@@ -176,7 +176,7 @@
     (function checkAdminMode() {
       var params = new URLSearchParams(window.location.search);
       if (params.get('admin') === '1' && !isAdmin) {
-        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || 'AshilAthira2027';
+        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
         var entered = window.prompt('Enter Owner Password:');
         if (entered === configuredPassword) {
           sessionStorage.setItem('wishesAdminAuthed', 'true');
@@ -197,7 +197,7 @@
           }
           return;
         }
-        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || 'AshilAthira2027';
+        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
         var entered = window.prompt('Enter Owner Password:');
         if (entered === configuredPassword) {
           sessionStorage.setItem('wishesAdminAuthed', 'true');

@@ -150,7 +150,7 @@ window.WEDDING_CONFIG = {
 
   /* ── ADMIN (Wishes Wall moderation) ───────────────────────── */
   admin: {
-    password: 'AshilAthira2027',
+    password: '123456',
   },
 
 };
