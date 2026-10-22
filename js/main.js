@@ -156,36 +156,62 @@
     var wishesList = document.getElementById('wishesList');
     var wishesCount = document.getElementById('wishesCount');
 
-    // ── Admin mode ────────────────────────────────────────────
-    // Activated by adding ?admin=1 to the URL, then entering the
-    // password set in js/config.js (admin.password). Once entered
-    // correctly, stays active for the rest of the browser session.
-    var isAdmin = false;
+    // ── Admin / Owner mode ────────────────────────────────────
+    // Only the owner with the password can see the wishes list
+    var isAdmin = sessionStorage.getItem('wishesAdminAuthed') === 'true';
+    var adminBadge = document.getElementById('wishesAdminBadge');
+    var ownerLoginBtn = document.getElementById('ownerLoginBtn');
+
+    function updateAdminUI() {
+      if (adminBadge) adminBadge.style.display = isAdmin ? 'inline-flex' : 'none';
+      if (ownerLoginBtn) {
+        ownerLoginBtn.innerHTML = isAdmin
+          ? '<i class="fas fa-lock-open"></i> Log out of Owner View'
+          : '<i class="fas fa-lock"></i> Owner View';
+      }
+      displayWishes();
+    }
+
+    // Check ?admin=1 in URL
     (function checkAdminMode() {
       var params = new URLSearchParams(window.location.search);
-      if (params.get('admin') !== '1') return;
-
-      if (sessionStorage.getItem('wishesAdminAuthed') === 'true') {
-        isAdmin = true;
-        return;
-      }
-
-      var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || null;
-      if (!configuredPassword) return;
-
-      var entered = window.prompt('Admin password:');
-      if (entered === configuredPassword) {
-        sessionStorage.setItem('wishesAdminAuthed', 'true');
-        isAdmin = true;
-      } else if (entered !== null) {
-        alert('Incorrect password.');
+      if (params.get('admin') === '1' && !isAdmin) {
+        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || 'AshilAthira2027';
+        var entered = window.prompt('Enter Owner Password:');
+        if (entered === configuredPassword) {
+          sessionStorage.setItem('wishesAdminAuthed', 'true');
+          isAdmin = true;
+        } else if (entered !== null) {
+          alert('Incorrect password.');
+        }
       }
     })();
 
-    if (isAdmin) {
-      var adminBadge = document.getElementById('wishesAdminBadge');
-      if (adminBadge) adminBadge.style.display = 'inline-flex';
+    if (ownerLoginBtn) {
+      ownerLoginBtn.addEventListener('click', function() {
+        if (isAdmin) {
+          if (window.confirm('Log out of Owner View?')) {
+            sessionStorage.removeItem('wishesAdminAuthed');
+            isAdmin = false;
+            updateAdminUI();
+          }
+          return;
+        }
+        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || 'AshilAthira2027';
+        var entered = window.prompt('Enter Owner Password:');
+        if (entered === configuredPassword) {
+          sessionStorage.setItem('wishesAdminAuthed', 'true');
+          isAdmin = true;
+          updateAdminUI();
+          setTimeout(function() {
+            wishesDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 200);
+        } else if (entered !== null) {
+          alert('Incorrect password.');
+        }
+      });
     }
+
     var viewMoreContainer = document.getElementById('viewMoreContainer');
     var viewMoreBtn = document.getElementById('viewMoreBtn');
 
@@ -279,11 +305,11 @@
       return div.innerHTML;
     }
 
-    // Display wishes
+    // Display wishes (Only shown to Owner in Admin mode)
     function displayWishes() {
       wishesList.innerHTML = '';
       
-      if (allWishes.length === 0) {
+      if (!isAdmin || allWishes.length === 0) {
         wishesDisplay.style.display = 'none';
         return;
       }
@@ -401,15 +427,22 @@
           // Show success message
           btn.innerHTML = '<i class="fas fa-check"></i> WISH SENT!';
 
+          var successMsg = document.getElementById('wishesSuccessMsg');
+          if (successMsg) {
+            successMsg.style.display = 'block';
+          }
+
           setTimeout(function() {
             btn.innerHTML = originalText;
             btn.disabled = false;
-          }, 2000);
+          }, 3000);
 
-          // Scroll to wishes display
-          setTimeout(function() {
-            wishesDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }, 300);
+          if (isAdmin) {
+            // Scroll to wishes display only for owner
+            setTimeout(function() {
+              wishesDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300);
+          }
         } else {
           alert('Unable to save your wish. Please check your internet connection and try again.');
           btn.innerHTML = originalText;
