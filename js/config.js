@@ -100,7 +100,7 @@ window.WEDDING_CONFIG = {
         name:    'CATHEDRAL HALL',
         address: 'Pazhanji, Thrissur',
       },
-      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Cathedral+Hall%2C+Pazhanji',
+      mapsUrl:   'https://maps.app.goo.gl/Ly4dnR2w5ts1pYzM9',
       mapsLabel: 'Open Google Maps',
     },
   ],
