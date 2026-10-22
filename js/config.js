@@ -1,6 +1,6 @@
 /**
  * ============================================================
- *  WEDDING CONFIGURATION — SAJJAD ALI & AYESHA SIDDIQUA
+ *  WEDDING CONFIGURATION — ASHIL JOHNSON & DR. ATHIRA ELSA JOSE
  *  Edit this file to update all wedding details across the site
  * ============================================================
  */
@@ -8,108 +8,109 @@ window.WEDDING_CONFIG = {
 
   /* ── SEO & METADATA ─────────────────────────────────────── */
   seo: {
-    title:             'Sajjad Ali & Ayesha Siddiqua | Wedding Invitation',
-    description:       'With the blessings of Allah, join us in celebrating the wedding of Sajjad Ali & Ayesha Siddiqua — Nikah on 17 September 2026 at Nandagokula Convention Centre, Hassan, and Reception on 20 September 2026 at Wind Valley Resort, Cherkala.',
-    ogTitle:           'Sajjad Ali & Ayesha Siddiqua | Wedding Invitation',
-    ogDescription:     'You are warmly invited to the wedding of Sajjad Ali & Ayesha Siddiqua — 17 & 20 September 2026.',
+    title:             'Ashil Johnson & Dr. Athira Elsa Jose | Wedding Invitation',
+    description:       '“They are no longer two, but one” (Matthew 19:6). Join us in celebrating the holy matrimony of Ashil Johnson & Dr. Athira Elsa Jose on Sunday, 31 January 2027 at Mar Ignation Orthodox Syrian Church, Kattakampal, followed by Lunch at Cathedral Hall, Pazhanji.',
+    ogTitle:           'Ashil Johnson & Dr. Athira Elsa Jose | Wedding Invitation',
+    ogDescription:     'You are warmly invited to the wedding of Ashil Johnson & Dr. Athira Elsa Jose — Sunday, 31 January 2027.',
     ogImage:           'og-image.jpg',
-    canonicalUrl:      'https://sajjad-ayesha.wedding/',
+    canonicalUrl:      'https://ashil-athira.wedding/',
     themeColor:        '#C8A96A',
   },
 
   /* ── COUPLE ─────────────────────────────────────────────── */
   groom: {
-    firstName:         'Sajjad',
-    fullName:          'Sajjad Ali',
+    firstName:         'Ashil',
+    fullName:          'Ashil Johnson',
     role:              'The Groom',
     parentLabel:       'Beloved Son of',
     parents: [
-      { name: 'Mr. SK Abbas Ali',    prefix: '' },
-      { name: 'Mrs. Zuhara Abbas Ali', prefix: '&' },
+      { name: 'Mr. P.V. Johnson', prefix: '' },
+      { name: 'Mrs. Rajani Johnson (Late)', prefix: '&' },
     ],
+    address:           'Pulikkottil House, Pleasant Villa Karikkad, Thrissur Dt., Pin: 680519',
+    phone:             '+91 99611 22059',
+    grandParents:      'Grandson of (Late) Varudhukutty & (Late) Elichikutty, (Late) Chakkappu & (Late) Kunjummu',
   },
 
   bride: {
-    firstName:         'Ayesha',
-    fullName:          'Ayesha Siddiqua',
+    firstName:         'Athira',
+    fullName:          'Dr. Athira Elsa Jose',
     role:              'The Bride',
     parentLabel:       'Beloved Daughter of',
     parents: [
-      { name: 'Mr. Muneer Ahmed',      prefix: '' },
-      { name: 'Mrs. Nishath Fathima',  prefix: '&' },
+      { name: 'Mr. Jose M Daniel', prefix: '' },
+      { name: 'Mrs. Jiji Jose', prefix: '&' },
     ],
+    address:           'Nedumtharayil House, Athirabhavan, V Kottayam, Pathanamthitta Dt.',
   },
 
   /* ── HOSTING FAMILY ─────────────────────────────────────── */
   host: {
-    familyName:        'ALI FAMILY',
-    hostName:          'Mr. SK Abbas Ali & Mrs. Zuhara Abbas Ali',
-    hostTitle:         'solicit your esteemed presence with your family',
-    inviteIntro:       'on the occasion of the wedding ceremony of our son',
-    navLogo:           'S & A',
+    familyName:        'JOHNSON FAMILY',
+    hostName:          'Mr. P.V. Johnson & Mrs. Rajani Johnson (Late)',
+    hostTitle:         'cordially invite your esteemed presence with family',
+    inviteIntro:       'on the auspicious occasion of the marriage of our son',
+    navLogo:           'A & A',
   },
 
   /* ── DATES ───────────────────────────────────────────────── */
   dates: {
-    displayRange:      '17 & 20 September 2026',
-    displayDot:        '17 · 20 · 2026',
+    displayRange:      'Sunday, 31 January 2027',
+    displayDot:        '31 · 01 · 2027',
   },
 
   /* ── COUNTDOWN ───────────────────────────────────────────── */
   countdown: {
     nikkah: {
-      label:   'Nikah Ceremony',
-      target:  '2026-09-17T12:30:00',
+      label:   'Marriage Ceremony',
+      target:  '2027-01-31T10:30:00',
     },
     reception: {
-      label:   'Reception',
-      target:  '2026-09-20T16:00:00',
+      label:   'Lunch & Reception',
+      target:  '2027-01-31T12:30:00',
     },
   },
 
   /* ── EVENTS ──────────────────────────────────────────────── */
   events: [
     {
-      id:        'nikah',
-      type:      'Sacred Ceremony',
-      title:     'Nikah',
-      icon:      'fas fa-mosque',
-      dayName:   'Thursday',
-      date:      '17 September 2026',
-      hijriDate: '1448, Rabi al-Akhir 6',
-      time:      '12:30 PM',
+      id:        'ceremony',
+      type:      'Sacred Matrimony',
+      title:     'Marriage Ceremony',
+      icon:      'fas fa-church',
+      dayName:   'Sunday',
+      date:      '31 January 2027',
+      time:      '10:30 AM',
       venue: {
-        name:    'NANDAGOKULA CONVENTION CENTRE',
-        address: 'Hassan',
+        name:    'MAR IGNATION ORTHODOX SYRIAN CHURCH',
+        address: 'Kattakampal, Thrissur',
       },
-      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Nandagokula+Convention+Centre%2C+Hassan',
+      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Mar+Ignation+Orthodox+Syrian+Church%2C+Kattakampal',
       mapsLabel: 'Open Google Maps',
     },
     {
       id:        'reception',
-      type:      'Celebration',
-      title:     'Reception',
-      icon:      'fas fa-star',
+      type:      'Celebration & Fellowship',
+      title:     'Lunch & Reception',
+      icon:      'fas fa-glass-cheers',
       dayName:   'Sunday',
-      date:      '20 September 2026',
-      hijriDate: '1448, Rabi al-Akhir 9',
-      time:      '4:00 PM Onwards',
+      date:      '31 January 2027',
+      time:      'Following the Ceremony (12:30 PM)',
       venue: {
-        name:    'WIND VALLEY RESORT',
-        address: 'Cherkala',
+        name:    'CATHEDRAL HALL',
+        address: 'Pazhanji, Thrissur',
       },
-      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Wind+Valley+Resort%2C+Cherkala',
+      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Cathedral+Hall%2C+Pazhanji',
       mapsLabel: 'Open Google Maps',
     },
   ],
 
   /* ── GALLERY IMAGES ──────────────────────────────────────── */
   gallery: [
-    { src: 'assets/images/gallery-1.jpg', alt: 'Sajjad & Ayesha — Photo 1' },
-    { src: 'assets/images/gallery-2.jpg', alt: 'Sajjad & Ayesha — Photo 2' },
-    { src: 'assets/images/gallery-3.jpg', alt: 'Sajjad & Ayesha — Photo 3' },
-    { src: 'assets/images/gallery-4.jpg', alt: 'Sajjad & Ayesha — Photo 4' },
-    { src: 'assets/images/gallery-5.jpg', alt: 'Sajjad & Ayesha — Photo 5' },
+    { src: 'assets/images/couple.jpg', alt: 'Ashil & Athira Elsa — Photo 1' },
+    { src: 'assets/images/IMG_0015.jpg.jpeg', alt: 'Ashil & Athira Elsa — Photo 2' },
+    { src: 'assets/images/IMG_0018.jpg.jpeg', alt: 'Ashil & Athira Elsa — Photo 3' },
+    { src: 'assets/images/IMG_0022.JPG.jpeg', alt: 'Ashil & Athira Elsa — Photo 4' },
   ],
 
   /* ── MUSIC ───────────────────────────────────────────────── */
@@ -120,32 +121,36 @@ window.WEDDING_CONFIG = {
 
   /* ── REGARDS SECTION ─────────────────────────────────────── */
   regards: {
-    heading: 'WITH LOVE FROM',
+    heading: 'WITH BEST COMPLIMENTS',
+    compliments: 'Adlyn, Genisis',
     columns: [
       {
         role:   "Groom's Family",
-        names:  ['Mr. SK Abbas Ali & Mrs. Zuhara Abbas Ali', 'Ameen Manzil, Chalakkunnu, Vidya Nagar, Kasaragod'],
+        names:  [
+          'Mr. P.V. Johnson & Mrs. Rajani Johnson (Late)',
+          'Pulikkottil House, Pleasant Villa Karikkad, Thrissur Dt., Pin: 680519',
+          'Mob: 9961122059',
+        ],
       },
       {
         role:   "Bride's Family",
-        names:  ['Mr. Muneer Ahmed & Mrs. Nishath Fathima', 'Sahara Kitchenware, Hassan, Karnataka'],
+        names:  [
+          'Mr. Jose M Daniel & Mrs. Jiji Jose',
+          'Nedumtharayil House, Athirabhavan, V Kottayam, Pathanamthitta Dt.',
+        ],
       },
     ],
   },
 
   /* ── FOOTER ──────────────────────────────────────────────── */
   footer: {
-    message:     'We look forward to celebrating this special day with you.',
-    tagline:     'Best Compliments from Dear and Near Ones',
+    message:     'We look forward to celebrating this sacred day with you.',
+    tagline:     'With best compliments: Adlyn, Genisis',
   },
 
-  /* ── ADMIN (Wishes Wall moderation) ─────────────────────────
-     Visit the site with ?admin=1 added to the URL, e.g.:
-       https://your-site.com/?admin=1
-     You'll be asked for this password once per browser session.
-     CHANGE THIS to something only you know before sharing the link. */
+  /* ── ADMIN (Wishes Wall moderation) ───────────────────────── */
   admin: {
-    password: 'SajjadAyesha2026',
+    password: 'AshilAthira2027',
   },
 
 };

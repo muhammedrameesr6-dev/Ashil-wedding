@@ -3353,3 +3353,68 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(212,160,23,0.3);
 }
+
+/* Custom additions for Ashil & Athira Elsa */
+.invitation-host-address {
+  font-family: var(--font-sans);
+  font-size: clamp(12px, 1.6vw, 14px);
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.invitation-grandson {
+  font-family: var(--font-serif);
+  font-size: clamp(12px, 1.6vw, 14px);
+  color: var(--gold-dark);
+  letter-spacing: 0.04em;
+  margin: 6px auto 18px;
+  line-height: 1.6;
+}
+.invitation-bride-parents {
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 1.7vw, 15px);
+  color: var(--text-medium);
+  line-height: 1.6;
+  margin-top: 14px;
+}
+.event-qr-card {
+  margin: 20px auto 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px dashed var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+.event-qr-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.event-qr-label {
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+}
+.compliments-banner {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--cream-card);
+  border-top: 1px solid rgba(212, 160, 23, 0.2);
+  border-bottom: 1px solid rgba(212, 160, 23, 0.2);
+  margin: 40px auto 0;
+}
+.compliments-text {
+  font-family: var(--font-serif);
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--gold-dark);
+  letter-spacing: 0.06em;
+  font-style: italic;
+}

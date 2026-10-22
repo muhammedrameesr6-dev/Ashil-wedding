@@ -39,7 +39,7 @@
         var el = document.getElementById(id);
         if (el) el.textContent = '00';
       });
-      updateEventLabel('Alhamdulillah — Celebrations Complete');
+      updateEventLabel('Celebrations Complete — Blessed Beginning');
       return;
     }
 
