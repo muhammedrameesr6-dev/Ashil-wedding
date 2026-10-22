@@ -1,0 +1,12 @@
+{
+  "name": "ashil-athira-wedding",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ashil & Athira Elsa Wedding Invitation Website",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js",
+    "preview": "node server.js"
+  }
+}
