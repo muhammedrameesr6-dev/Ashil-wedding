@@ -1,0 +1,111 @@
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+[data-aos] {
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="fade-up"] { opacity: 0; transform: translateY(40px); }
+[data-aos="fade-up"].aos-animate { opacity: 1; transform: translateY(0); }
+[data-aos="fade-down"] { opacity: 0; transform: translateY(-40px); }
+[data-aos="fade-down"].aos-animate { opacity: 1; transform: translateY(0); }
+[data-aos="fade-left"] { opacity: 0; transform: translateX(40px); }
+[data-aos="fade-left"].aos-animate { opacity: 1; transform: translateX(0); }
+[data-aos="fade-right"] { opacity: 0; transform: translateX(-40px); }
+[data-aos="fade-right"].aos-animate { opacity: 1; transform: translateX(0); }
+[data-aos="scale-in"] { opacity: 0; transform: scale(0.85); }
+[data-aos="scale-in"].aos-animate { opacity: 1; transform: scale(1); }
+[data-aos="fade-in"] { opacity: 0; }
+[data-aos="fade-in"].aos-animate { opacity: 1; }
+
+/* ===== DELAY UTILITIES ===== */
+[data-aos-delay="100"] { transition-delay: 100ms; }
+[data-aos-delay="200"] { transition-delay: 200ms; }
+[data-aos-delay="300"] { transition-delay: 300ms; }
+[data-aos-delay="400"] { transition-delay: 400ms; }
+[data-aos-delay="500"] { transition-delay: 500ms; }
+[data-aos-delay="600"] { transition-delay: 600ms; }
+
+/* ===== BLUSH SHIMMER TEXT (replaces gold shimmer for main titles) ===== */
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 30%,
+    var(--peach) 50%,
+    var(--gold-light) 70%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 3s linear infinite;
+}
+
+@keyframes shimmerText {
+  to { background-position: 200% center; }
+}
+
+/* ===== HOVER LIFT ===== */
+.hover-lift {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(61, 107, 153, 0.18);
+}
+
+/* ===== FLOAT ANIMATIONS ===== */
+.float-1 { animation: floatY 6s ease-in-out infinite; }
+.float-2 { animation: floatY 7s ease-in-out 1s infinite; }
+.float-3 { animation: floatY 8s ease-in-out 2s infinite; }
+
+/* ===== PAGE TRANSITION ===== */
+.page-loaded body {
+  animation: pageIn 0.8s ease forwards;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== ORNAMENT SPIN ===== */
+.ornament-spin {
+  display: inline-block;
+  animation: gentleSpin 20s linear infinite;
+}
+
+@keyframes gentleSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== BLUSH GLOW PULSE ===== */
+.glow-gold {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 56, 92, 0.28); }
+  50% { box-shadow: 0 0 40px rgba(61, 107, 153, 0.45); }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .float-1, .float-2, .float-3 { animation: none; }
+  .shimmer-gold {
+    animation: none;
+    background: var(--gold);
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    color: var(--gold);
+  }
+  .glow-gold { animation: none; }
+}

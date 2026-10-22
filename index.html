@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sajjad Ali &amp; Ayesha Siddiqua | Wedding Invitation</title>
+  <meta name="description" content="17 & 20 September 2026 - you are lovingly invited" />
+
+  <!-- Open Graph (WhatsApp, Instagram, Facebook) -->
+  <meta property="og:title" content="Sajjad &amp; Ayesha | Wedding Invitation" />
+  <meta property="og:description" content="17 & 20 September 2026 - You are lovingly invited" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sajjad-ayesha.vercel.app/" />
+  <meta property="og:image" content="https://sajjad-ayesha.vercel.app/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt"
+    content="Sajjad Ali &amp; Ayesha Siddiqua Wedding Invitation — 17 &amp; 20 September 2026" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sajjad Ali &amp; Ayesha Siddiqua | Wedding Invitation" />
+  <meta name="twitter:description" content="Wedding Invitation • 17 &amp; 20 September 2026 • Hassan &amp; Cherkala" />
+  <meta name="twitter:image" content="https://sajjad-ayesha.vercel.app/og-image.jpg" />
+
+  <link rel="canonical" href="https://sajjad-ayesha.vercel.app/" />
+
+  <!-- Structured Data — Wedding Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Sajjad Ali & Ayesha Siddiqua — Nikah & Reception",
+    "description": "Wedding of Sajjad Ali and Ayesha Siddiqua",
+    "startDate": "2026-09-17T12:30:00+05:30",
+    "endDate": "2026-09-20T16:00:00+05:30",
+    "location": {
+      "@type": "Place",
+      "name": "Nandagokula Convention Centre",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hassan",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    },
+    "organizer": {
+      "@type": "Person",
+      "name": "Mr. SK Abbas Ali & Mrs. Zuhara Abbas Ali"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <meta name="theme-color" content="#C8A96A" />
+</head>
+
+<body class="gate-active">
+
+
+  <!-- ===== OPENING GATE ===== -->
+  <div id="gate">
+    <div class="gate-image">
+      <img src="assets/images/couple.jpg" alt="Sajjad and Ayesha" />
+    </div>
+    <div class="gate-overlay"></div>
+
+    <div id="gate-enter" class="gate-content" aria-label="Wedding invitation">
+
+      <!-- Corner border frame -->
+      <span class="bp-frame"></span>
+
+      <!-- Top: Bismillah label -->
+      <span class="bp-top-label">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+
+      <!-- Monogram circle -->
+      <span class="bp-monogram">
+        <span class="bp-monogram-inner">
+          <span class="bp-monogram-names">S <em>&amp;</em> A</span>
+          <span class="bp-monogram-date">SEP 2026</span>
+        </span>
+      </span>
+
+      <!-- Date -->
+      <span class="bp-date">17 & 20 SEPTEMBER 2026</span>
+
+      <!-- Names -->
+      <span class="bp-groom-name">Sajjad</span>
+      <span class="bp-ampersand">&amp;</span>
+      <span class="bp-bride-name">Ayesha</span>
+
+      <!-- Subtitle -->
+      <span class="bp-subtitle">Two hearts<br />one beautiful beginning.</span>
+
+      <!-- CTA Button -->
+      <button type="button" id="gate-open-btn" class="bp-btn"><span class="bp-btn-text">OPEN INVITATION &nbsp;→</span></button>
+
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg-image">
+      <img src="assets/images/IMG_0015.jpg.jpeg" alt="Sajjad and Ayesha" />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-sparkles" aria-hidden="true">
+      <span class="hero-sparkle" style="top:14%; left:10%; animation-delay:0s;"></span>
+      <span class="hero-sparkle" style="top:24%; left:38%; animation-delay:1.3s;"></span>
+      <span class="hero-sparkle" style="top:64%; left:16%; animation-delay:2.4s;"></span>
+      <span class="hero-sparkle" style="top:80%; left:34%; animation-delay:0.7s;"></span>
+      <span class="hero-sparkle" style="top:44%; left:6%;  animation-delay:1.9s;"></span>
+      <span class="hero-sparkle" style="top:8%;  left:56%; animation-delay:1.1s;"></span>
+    </div>
+    <!-- 
+    <div class="hero-petals" aria-hidden="true">
+      <span class="hero-petal float-1">✿</span>
+      <span class="hero-petal float-2">❀</span>
+      <span class="hero-petal float-3">✿</span>
+    </div> -->
+
+    <div class="hero-content">
+      <p class="hero-label" style="animation-delay:1.0s">With the blessings of Allah</p>
+      <p class="hero-label" style="animation-delay:1.2s">Welcomes You to the Wedding of</p>
+
+      <!-- Groom name first, always - moved after blessing text -->
+      <div class="hero-names" style="animation-delay:1.4s">
+        <span class="hero-name-bride">Sajjad</span>
+        <span class="hero-and">&amp;</span>
+        <span class="hero-name-groom">Ayesha</span>
+      </div>
+
+      <div class="hero-love-tag" style="animation-delay:1.75s">
+      </div>
+      <br><br><br><br><br><br>
+
+      <div class="hero-date" style="animation-delay:1.9s">
+        <p class="hero-date-text">Thursday &amp; Sunday</p>
+        <span class="hero-date-number">17 &amp; 20</span>
+        <p class="hero-date-text" style="font-size:clamp(13px,2vw,17px); letter-spacing:0.2em;">September 2026</p>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ===== BISMILLAH SECTION ===== -->
+  <!-- <section id="bismillah-section" aria-label="Bismillah">
+    <div class="bismillah-content"> -->
+  <!-- SVG Bismillah artwork -->
+  <!-- <div class="bismillah-arabic-wrap" data-aos="scale-in">
+        <span class="bismillah-arabic" aria-label="Bismillah ir-rahman ir-rahim">بِسْمِ اللَّهِ الرَّحْمَنِ
+          الرَّحِيمِ</span>
+      </div>
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200" style="justify-content:center;">
+        <span class="ornament-line" style="background:linear-gradient(90deg,transparent,var(--gold));"></span>
+        <span class="ornament-flower" style="color:var(--gold);">✿</span>
+        <span class="ornament-line right" style="background:linear-gradient(90deg,var(--gold),transparent);"></span>
+      </div>
+      <p class="bismillah-translation" data-aos="fade-up" data-aos-delay="100">
+        In the Name of Allah,<br />
+        The Most Beneficent,<br />
+        The Most Merciful.
+      </p>
+    </div>
+  </section> -->
+
+  <!-- ===== COUNTDOWN ===== -->
+  <section id="countdown">
+    <div class="countdown-bg" aria-hidden="true"></div>
+    <div class="countdown-content">
+      <span class="section-eyebrow" data-aos="fade-up">The Big Day</span>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Counting Down to Forever
+      </h2>
+
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200" style="justify-content:center;">
+        <span class="ornament-line" style="background:linear-gradient(90deg,transparent,var(--gold));"></span>
+        <span class="ornament-flower" style="color:var(--gold);">✿</span>
+        <span class="ornament-line right" style="background:linear-gradient(90deg,var(--gold),transparent);"></span>
+      </div>
+
+      <div class="countdown-grid" data-aos="fade-up" data-aos-delay="200">
+        <div class="countdown-item">
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- <p id="cd-event-label" data-aos="fade-up" data-aos-delay="400"
+        style="margin-top:32px; font-family:var(--font-serif); font-size:clamp(15px,2.2vw,19px); color:var(--gold-dark); font-style:italic; letter-spacing:0.06em;">
+        Nikkah Ceremony
+      </p>
+      <p data-aos="fade-up" data-aos-delay="500"
+        style="margin-top:8px; font-family:var(--font-sans); font-size:clamp(13px,1.8vw,16px); color:var(--text-medium); letter-spacing:0.04em;">
+        17 September 2026 &nbsp;•&nbsp; Nandagokula Convention Centre, Hassan
+      </p> -->
+    </div>
+  </section>
+
+  <!-- ===== OPENING INVITATION ===== -->
+  <section id="opening">
+    <div class="opening-bg-pattern" aria-hidden="true"></div>
+    <div class="opening-content">
+      <span class="section-eyebrow" data-aos="fade-up">The Union of Two Souls</span>
+      <h1 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        A Blessed Wedding Ceremony
+      </h1>
+
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+        <span class="ornament-line"></span>
+        <span class="ornament-flower">✿</span>
+        <span class="ornament-line right"></span>
+      </div>
+
+      <div class="opening-couple-photo" data-aos="scale-in" data-aos-delay="200">
+        <div class="couple-photo-frame">
+          <div class="corner-ornament tl"></div>
+          <div class="corner-ornament tr"></div>
+          <div class="corner-ornament bl"></div>
+          <div class="corner-ornament br"></div>
+          <img src="assets/images/IMG_0018.jpg.jpeg" alt="Sajjad Ali and Ayesha Siddiqua" loading="eager" />
+        </div>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100">
+        <blockquote class="opening-quote">
+          <span class="opening-quote-arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
+            لِّتَسْكُنُوا إِلَيْهَا</span>
+          "And of His signs is that He created for you from yourselves mates that you may find tranquility in them."
+          <br /><br />
+          <em>— Surah Ar-Rum 30:21</em>
+        </blockquote>
+      </div>
+
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="300">
+        <span class="ornament-line"></span>
+        <span class="ornament-flower">✿</span>
+        <span class="ornament-line right"></span>
+      </div>
+
+      <!-- Invitation wording from groom's family -->
+      <!-- <div class="invitation-message" data-aos="fade-up" data-aos-delay="200">
+        <p class="invitation-host">Mr. SK Abbas Ali &amp; Mrs. Zuhara Abbas Ali</p>
+        <p class="invitation-host-title">solicit your esteemed presence with your family</p>
+        <p class="invitation-body">
+          on the occasion of the wedding ceremony<br />
+          of our son
+        </p>
+        <p class="invitation-groom-name">Sajjad Ali</p>
+        <p class="invitation-with">with</p>
+        <p class="invitation-bride-name">Ayesha Siddiqua</p>
+        <p class="invitation-body" style="margin-top:24px; font-size:clamp(13px,1.8vw,16px); font-style:italic; color:var(--text-light);">
+          Daughter of Mr. Muneer Ahmed &amp; Mrs. Nishath Fathima
+        </p>
+      </div>
+    </div>
+  </section> -->
+
+      <!-- ===== COUPLE SECTION ===== -->
+      <section id="parents">
+        <div class="parents-content">
+          <span class="section-eyebrow" data-aos="fade-up">YOU ARE CORDIALLY INVITED</span>
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">A Blessed Union</h2>
+
+          <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+            <span class="ornament-line"></span>
+            <span class="ornament-flower">✿</span>
+            <span class="ornament-line right"></span>
+          </div>
+
+          <div class="love-story-banner" data-aos="fade-up" data-aos-delay="150">
+            <p class="love-story-text">
+              With immense joy and gratitude to Allah, the families of Sajjad and Ayesha warmly invite you
+              and your family to celebrate their Wedding and share in the blessings of this beautiful beginning.
+            </p>
+          </div>
+
+          <div class="parents-grid">
+            <!-- Groom's Family — always first -->
+            <div class="parents-card modern" data-aos="fade-up" data-aos-delay="200">
+              <div class="parents-photo-circle">
+                <img src="assets/images/groom.jpeg" alt="Sajjad Ali" loading="lazy" />
+              </div>
+              <p class="parents-card-label">THE GROOM</p>
+              <span class="parents-card-name">Sajjad Ali</span>
+              <div class="parents-card-address">
+                Vidya Nagar, Kasaragod, Kerala
+              </div>
+              <div class="parents-card-parent">
+                <strong>SON OF</strong>
+                Mr. SK Abbas Ali<br />
+                <!-- &amp;<br /> -->
+                Mrs. Zuhara Abbas Ali
+              </div>
+              <div class="parents-card-siblings">
+                <strong>SIBLINGS</strong>
+                <span class="sibling-name">Brother: Dr. Shabeer Ali (PT)</span><br />
+                <span class="sibling-name">Sister: Suroora Shirin</span>
+              </div>
+            </div>
+
+            <!-- Bride's Family -->
+            <div class="parents-card modern" data-aos="fade-up" data-aos-delay="300">
+              <div class="parents-photo-circle">
+                <img src="assets/images/bride.jpeg" alt="Ayesha Siddiqua" loading="lazy" />
+              </div>
+              <p class="parents-card-label">THE BRIDE</p>
+              <span class="parents-card-name">Ayesha Siddiqua</span>
+              <div class="parents-card-address">
+                KR Puram, Hassan, Karnataka
+              </div>
+              <div class="parents-card-parent">
+                <strong>DAUGHTER OF</strong>
+                Mr. Muneer Ahmed<br />
+                <!-- &amp;<br /> -->
+                Mrs. Nishath Fathima
+              </div>
+              <div class="parents-card-siblings">
+                <strong>SIBLING</strong>
+                <span class="sibling-name">Brother: Faisal Junaid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== QUOTE SECTION ===== -->
+      <section id="quote-section">
+        <div class="quote-bg" aria-hidden="true"></div>
+        <div class="quote-content">
+          <span class="quote-mark" data-aos="fade-in" aria-hidden="true">"</span>
+          <p class="quote-arabic" data-aos="fade-up">
+            وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+          </p>
+          <p class="quote-translation" data-aos="fade-up" data-aos-delay="100">
+            "And He placed between you affection and mercy."
+          </p>
+          <span class="quote-source" data-aos="fade-up" data-aos-delay="200">— Surah Ar-Rum, 30:21</span>
+        </div>
+      </section>
+
+      <!-- ===== EVENTS ===== -->
+      <section id="events">
+        <div class="events-bg-pattern" aria-hidden="true"></div>
+        <div class="events-content">
+          <span class="section-eyebrow" data-aos="fade-up">Mark Your Calendar</span>
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Wedding Celebrations</h2>
+
+          <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+            <span class="ornament-line"></span>
+            <span class="ornament-flower">✿</span>
+            <span class="ornament-line right"></span>
+          </div>
+
+          <div class="events-list">
+
+            <!-- ── EVENT 1: NIKAH ── -->
+            <div class="event-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="event-petal petal-1">🌸</div>
+              <div class="event-petal petal-2">🌸</div>
+              <div class="event-petal petal-3">🌸</div>
+
+              <div class="event-header">
+                <div class="event-date-badge">
+                  <span class="event-day">THURSDAY</span>
+                  <span class="event-date-num">17 SEPTEMBER 2026</span>
+                </div>
+                <span class="event-number">01</span>
+              </div>
+
+              <h3 class="event-name">Nikah</h3>
+              <div class="event-name-underline"></div>
+
+              <div class="event-info-card">
+                <div class="event-info-row">
+                  <div class="event-info-icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="event-info-text">
+                    <span class="event-info-label">TIME</span>
+                    <span class="event-info-value">12:30 PM</span>
+                  </div>
+                </div>
+
+                <div class="event-info-divider"></div>
+
+                <div class="event-info-row">
+                  <div class="event-info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="event-info-text">
+                    <span class="event-info-label">VENUE</span>
+                    <span class="event-info-value">Nandagokula Convention Centre</span>
+                    <span class="event-info-location">Hassan, Karnataka</span>
+                  </div>
+                </div>
+              </div>
+
+              <a href="https://www.google.com/maps/search/?api=1&query=Nandagokula+Convention+Centre+Hassan+Karnataka"
+                target="_blank" rel="noopener noreferrer" class="event-directions-btn">
+                <i class="fas fa-map-marker-alt"></i>
+                GET DIRECTIONS
+              </a>
+            </div>
+
+            <!-- ── EVENT 2: RECEPTION ── -->
+            <div class="event-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="event-petal petal-1">🌸</div>
+              <div class="event-petal petal-2">🌸</div>
+              <div class="event-petal petal-3">🌸</div>
+
+              <div class="event-header">
+                <div class="event-date-badge">
+                  <span class="event-day">SUNDAY</span>
+                  <span class="event-date-num">20 SEPTEMBER 2026</span>
+                </div>
+                <span class="event-number">02</span>
+              </div>
+
+              <h3 class="event-name">Reception</h3>
+              <div class="event-name-underline"></div>
+
+              <div class="event-info-card">
+                <div class="event-info-row">
+                  <div class="event-info-icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="event-info-text">
+                    <span class="event-info-label">TIME</span>
+                    <span class="event-info-value">4:00 PM Onwards</span>
+                  </div>
+                </div>
+
+                <div class="event-info-divider"></div>
+
+                <div class="event-info-row">
+                  <div class="event-info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="event-info-text">
+                    <span class="event-info-label">VENUE</span>
+                    <span class="event-info-value">Wind Valley Resort</span>
+                    <span class="event-info-location">Cherkala, Kerala</span>
+                  </div>
+                </div>
+              </div>
+
+              <a href="https://www.google.com/maps/search/?api=1&query=Wind+Valley+Resort+Cherkala+Kerala"
+                target="_blank" rel="noopener noreferrer" class="event-directions-btn">
+                <i class="fas fa-map-marker-alt"></i>
+                GET DIRECTIONS
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== OUR STORY SECTION ===== -->
+      <section id="our-story">
+        <div class="our-story-bg-pattern" aria-hidden="true"></div>
+        <div class="our-story-content">
+          <span class="section-eyebrow" data-aos="fade-up" style="color:var(--gold-light);">OUR STORY</span>
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100"
+            style="font-family:var(--font-serif); font-size:clamp(36px,7vw,72px); letter-spacing:-0.02em;">
+            WRITTEN<br />
+            IN FAITH
+          </h2>
+
+          <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+            <span class="ornament-line"></span>
+            <span class="ornament-flower">✿</span>
+            <span class="ornament-line right"></span>
+          </div>
+
+          <div class="our-story-text" data-aos="fade-up" data-aos-delay="300">
+            <p>
+              Two hearts from Kasaragod and Hassan — brought together by destiny, bound together by faith.
+              Sajjad and Ayesha's journey is a beautiful testament to a love guided by the grace of Allah.
+              With the blessings of their families and the du'as of all who love them, they now begin their
+              forever — as one, In Sha Allah.
+            </p>
+          </div>
+
+          <!-- Couple Photo -->
+          <div class="our-story-photo" data-aos="scale-in" data-aos-delay="400">
+            <div class="story-photo-frame">
+              <img src="assets/images/IMG_0022.JPG.jpeg" alt="Sajjad and Ayesha - Our Story" loading="lazy" />
+            </div>
+          </div>
+          <!-- Promise Section -->
+          <!-- <div class="our-story-promise" data-aos="fade-up" data-aos-delay="600">
+            <p class="promise-label">a promise</p>
+            <h3 class="promise-title">MADE IN<br />FAITH</h3>
+            <p class="promise-text">
+              With the blessings of their families and the grace of Allah,<br />
+              Sajjad and Ayesha begin their journey as one.
+            </p>
+          </div> -->
+        </div>
+      </section>
+
+
+      <!-- Our Moments Timeline -->
+      <section class="our-moments-section" data-aos="fade-up" data-aos-delay="500">
+        <div class="moments-container">
+          <!-- Decorative arch frame (optional - can be added with CSS) -->
+          <div class="moments-header">
+            <h3 class="moments-heading">Our Moments</h3>
+            <div class="moments-divider">
+              <span class="diamond">◆</span>
+              <span class="diamond">◆</span>
+              <span class="diamond">◆</span>
+            </div>
+          </div>
+
+          <div class="moments-timeline-vertical">
+            <!-- Vertical line with golden circles -->
+            <div class="timeline-line"></div>
+
+            <!-- Moment 1: First Meeting -->
+            <div class="moment-item-vertical left" data-aos="fade-right" data-aos-delay="100">
+              <div class="moment-content-vertical">
+                <div class="moment-date-vertical">3 MAY 2026</div>
+                <h4 class="moment-title-vertical">FIRST MEETING</h4>
+                <p class="moment-description-vertical">
+                  "Two hearts met for the first time, beginning a beautiful journey together."
+                </p>
+                <!-- <div class="moment-flourish">❧</div> -->
+              </div>
+              <div class="timeline-circle"></div>
+            </div>
+
+            <!-- Moment 2: Engagement -->
+            <div class="moment-item-vertical right" data-aos="fade-left" data-aos-delay="200">
+              <div class="timeline-circle"></div>
+              <div class="moment-content-vertical">
+                <div class="moment-date-vertical">14 JUNE 2026</div>
+                <h4 class="moment-title-vertical">ENGAGEMENT</h4>
+                <p class="moment-description-vertical">
+                  "A joyful day as our families came together to bless our promise and celebrate
+                  the start of our forever."
+                </p>
+                <!-- <div class="moment-flourish">❧</div> -->
+              </div>
+            </div>
+
+            <!-- Moment 3: Nikah -->
+            <div class="moment-item-vertical left" data-aos="fade-right" data-aos-delay="300">
+              <div class="moment-content-vertical">
+                <div class="moment-date-vertical">17 SEPTEMBER 2026</div>
+                <h4 class="moment-title-vertical">NIKAH</h4>
+                <p class="moment-description-vertical">
+                  "United in love and faith, we begin a lifelong journey together with Allah's blessings."
+                </p>
+                <!-- <div class="moment-flourish">❧</div> -->
+              </div>
+              <div class="timeline-circle"></div>
+            </div>
+
+            <!-- Moment 4: The Scarlet Affair -->
+            <div class="moment-item-vertical right" data-aos="fade-left" data-aos-delay="400">
+              <div class="timeline-circle"></div>
+              <div class="moment-content-vertical">
+                <div class="moment-date-vertical">20 SEPTEMBER 2026</div>
+                <h4 class="moment-title-vertical">THE SCARLET AFFAIR</h4>
+                <p class="moment-description-vertical">
+                  "A celebration of love, laughter, and cherished moments shared with our family and friends."
+                </p>
+                <!-- <div class="moment-flourish">❧</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===== WISHES WALL SECTION ===== -->
+      <section id="wishes-wall">
+        <div class="wishes-content">
+          <div class="wishes-header">
+            <div class="wishes-monogram">
+              <span class="monogram-text">S & A</span>
+            </div>
+            <span class="section-eyebrow" data-aos="fade-up">— SEND YOUR LOVE —</span>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Wishes Wall</h2>
+          </div>
+
+          <!-- Wishes Form -->
+          <div class="wishes-form-container" data-aos="fade-up" data-aos-delay="200">
+            <form class="wishes-form" id="wishesForm">
+              <div class="wishes-form-group">
+                <input type="text" id="wishesName" placeholder="Your name" class="wishes-input" required>
+              </div>
+
+              <div class="wishes-form-group">
+                <textarea id="wishesMessage" placeholder="Write a blessing or warm wish for Sajjad & Ayesha..."
+                  class="wishes-textarea" rows="4" required></textarea>
+              </div>
+
+              <button type="submit" class="wishes-submit-btn">
+                SEND WISH <i class="fas fa-heart"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Wishes Display - Real wishes will be loaded here -->
+          <div class="wishes-display" data-aos="fade-up" data-aos-delay="300" id="wishesDisplay" style="display: none;">
+            <div class="wishes-blessing-header">
+              <span class="section-eyebrow">— WISHES & BLESSINGS —</span>
+              <h3 class="wishes-display-title">Words From Loved Ones</h3>
+              <div class="wishes-count">
+                <i class="fas fa-heart"></i> <span id="wishesCount">0</span> BLESSINGS RECEIVED
+              </div>
+              <div class="wishes-admin-badge" id="wishesAdminBadge" style="display: none;">
+                <i class="fas fa-user-shield"></i> Admin Mode — tap the trash icon to delete a wish
+              </div>
+            </div>
+
+            <!-- Real Wishes List -->
+            <div class="wishes-list" id="wishesList">
+              <!-- Real wishes will be dynamically inserted here -->
+            </div>
+
+            <div class="wishes-view-more" id="viewMoreContainer" style="display: none;">
+              <button class="view-more-btn" id="viewMoreBtn">View More Wishes</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WEDDING TIMELINE ===== -->
+      <!-- <section id="love-story">
+        <div class="love-story-content">
+          <span class="section-eyebrow" data-aos="fade-up" style="color:var(--gold-light);">Wedding Programme</span>
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">The Blessed Days</h2>
+
+          <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200" style="justify-content:center;">
+            <span class="ornament-line" style="background:linear-gradient(90deg,transparent,var(--gold));"></span>
+            <span class="ornament-flower" style="color:var(--gold);">✿</span>
+            <span class="ornament-line right" style="background:linear-gradient(90deg,var(--gold),transparent);"></span>
+          </div>
+
+          <div class="timeline">
+
+            <!-- Day 1: Nikah -->
+      <!-- <div class="timeline-item" data-aos="fade-right">
+              <div class="timeline-text">
+                <span class="timeline-date">17 September 2026 — Thursday</span>
+                <h3 class="timeline-title">Nikah Ceremony</h3>
+                <p class="timeline-desc">
+                  12:30 PM<br />
+                  Nandagokula Convention Centre<br />
+                  Hassan
+                </p>
+              </div>
+              <div class="timeline-dot">
+                <i class="fas fa-mosque" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-empty"></div>
+            </div> -->
+
+      <!-- Day 2: Reception -->
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="timeline-empty"></div>
+        <div class="timeline-text">
+          <h3 class="timeline-title">Reception</h3>
+          <p class="timeline-desc">
+            4:00 PM Onwards<br />
+            Wind Valley Resort<br />
+            Cherkala
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <!-- <section id="gallery">
+    <div class="gallery-content">
+      <span class="section-eyebrow" data-aos="fade-up">Moments Together</span>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our Gallery</h2>
+
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+        <span class="ornament-line"></span>
+        <span class="ornament-flower">✿</span>
+        <span class="ornament-line right"></span>
+      </div>
+
+      <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
+        <div class="gallery-item" data-aos="scale-in" data-aos-delay="0">
+          <img src="assets/images/gallery-1.jpg" alt="Sajjad &amp; Ayesha — Photo 1" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-aos="scale-in" data-aos-delay="100">
+          <img src="assets/images/gallery-2.jpg" alt="Sajjad &amp; Ayesha — Photo 2" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-aos="scale-in" data-aos-delay="200">
+          <img src="assets/images/gallery-3.jpg" alt="Sajjad &amp; Ayesha — Photo 3" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-aos="scale-in" data-aos-delay="100">
+          <img src="assets/images/gallery-4.jpg" alt="Sajjad &amp; Ayesha — Photo 4" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-aos="scale-in" data-aos-delay="200">
+          <img src="assets/images/gallery-5.jpg" alt="Sajjad &amp; Ayesha — Photo 5" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Lightbox -->
+  <!-- <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+        <button id="lightbox-close" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
+        <img id="lightbox-img" src="" alt="Full-size photo" />
+      </div> -->
+
+  <!-- ===== RSVP ===== -->
+  <!-- <section id="rsvp">
+    <div class="rsvp-content">
+      <span class="section-eyebrow" data-aos="fade-up">You Are Invited</span>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Kindly RSVP</h2>
+
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+        <span class="ornament-line"></span>
+        <span class="ornament-flower">✿</span>
+        <span class="ornament-line right"></span>
+      </div>
+
+      <p data-aos="fade-up"
+        style="font-family:var(--font-sans); font-size:clamp(15px,2vw,18px); color:var(--text-medium); line-height:1.9; margin-bottom:48px;">
+        Your presence will make our day even more special. Please let us know if you'll be joining us to celebrate.
+      </p>
+
+      <form id="rsvp-form" novalidate data-aos="fade-up" data-aos-delay="100">
+        <div class="rsvp-form-group">
+          <label for="rsvp-name">Your Full Name</label>
+          <input type="text" id="rsvp-name" name="name" placeholder="Enter your name" required />
+        </div>
+        <div class="rsvp-form-group">
+          <label for="rsvp-phone">Phone Number</label>
+          <input type="tel" id="rsvp-phone" name="phone" placeholder="Your contact number" />
+        </div>
+        <div class="rsvp-form-group">
+          <label for="rsvp-guests">Number of Guests</label>
+          <select id="rsvp-guests" name="guests">
+            <option value="1">1 person</option>
+            <option value="2">2 persons</option>
+            <option value="3">3 persons</option>
+            <option value="4">4+ persons</option>
+          </select>
+        </div>
+        <div class="rsvp-form-group">
+          <label for="rsvp-event">Attending</label>
+          <select id="rsvp-event" name="event">
+            <option value="both">Both — Nikkah &amp; Reception</option>
+            <option value="nikkah">Nikkah only (08 Aug)</option>
+            <option value="reception">Reception only (09 Aug)</option>
+          </select>
+        </div>
+        <div class="rsvp-form-group">
+          <label for="rsvp-message">Wishes for the Couple (optional)</label>
+          <textarea id="rsvp-message" name="message" placeholder="Share your blessings and prayers..."></textarea>
+        </div>
+
+        <div class="rsvp-form-group">
+          <label>Will you attend?</label>
+          <div class="rsvp-attend-toggle" role="radiogroup" aria-label="Will you attend?">
+            <input type="radio" id="rsvp-attend-yes" name="attend" value="attend" checked />
+            <label for="rsvp-attend-yes" class="rsvp-attend-btn">
+              <i class="fas fa-check" aria-hidden="true"></i> Attend
+            </label>
+            <input type="radio" id="rsvp-attend-no" name="attend" value="decline" />
+            <label for="rsvp-attend-no" class="rsvp-attend-btn">
+              <i class="fas fa-times" aria-hidden="true"></i> Decline
+            </label>
+          </div>
+        </div>
+
+        <div style="text-align:center;">
+          <button type="submit" class="rsvp-btn">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            <span>Send RSVP</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section> -->
+
+  <!-- ===== REGARDS SECTION ===== -->
+  <!-- <section id="regards">
+        <div class="regards-bg-pattern" aria-hidden="true"></div>
+        <div class="regards-content">
+
+          <p class="regards-inviting" data-aos="fade-up">Inviting All</p>
+
+          <p class="regards-subtitle" data-aos="fade-up" data-aos-delay="100">
+            We warmly invite you to celebrate our new beginning and bless us.
+          </p>
+
+          <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+            <span class="ornament-line"></span>
+            <span class="ornament-flower">✿</span>
+            <span class="ornament-line right"></span>
+          </div>
+
+          <h2 class="regards-heading" data-aos="fade-up" data-aos-delay="150">WITH LOVE FROM</h2>
+
+          <div class="regards-grid" data-aos="fade-up" data-aos-delay="200">
+            <!-- Column 1: Groom's Family -->
+  <!-- <div class="regards-col">
+              <p class="regards-role">Groom's Family</p>
+              <p class="regards-name">
+                Mr. SK Abbas Ali &amp; Mrs. Zuhara Abbas Ali<br />
+                <span style="font-size:0.9em; font-weight:500; opacity:0.9;">Ameen Manzil, Chalakkunnu,<br />Vidya
+                  Nagar, Kasaragod</span>
+              </p>
+            </div> -->
+
+  <!-- Gold Divider -->
+  <!-- <div class="regards-divider" aria-hidden="true"></div> -->
+
+  <!-- Column 2: Bride's Family -->
+  <!-- <div class="regards-col">
+              <p class="regards-role">Bride's Family</p>
+              <p class="regards-name">
+                Mr. Muneer Ahmed &amp; Mrs. Nishath Fathima<br />
+                <span style="font-size:0.9em; font-weight:500; opacity:0.9;">Sahara Kitchenware,<br />Hassan,
+                  Karnataka</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section> -->
+
+  <!-- ===== GET IN TOUCH SECTION ===== -->
+  <section id="contact">
+    <div class="contact-content">
+      <span class="section-eyebrow" data-aos="fade-up">— GET IN TOUCH —</span>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Any questions?</h2>
+
+      <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
+        <span class="ornament-line"></span>
+        <span class="ornament-flower">✿</span>
+        <span class="ornament-line right"></span>
+      </div>
+
+      <p class="contact-subtitle" data-aos="fade-up" data-aos-delay="150">
+        We'd love to hear from you — reach out to us anytime.
+      </p>
+
+      <div class="contact-cards">
+        <!-- Groom's Father Contact -->
+        <a href="tel:+919074565602" class="contact-card contact-card-green" data-aos="fade-up" data-aos-delay="200">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="contact-info">
+            <p class="contact-label">Groom's Father (SK Abbas Ali)</p>
+            <p class="contact-number">+91 90745 65602</p>
+          </div>
+        </a>
+
+        <!-- Bride's Father Contact -->
+        <a href="tel:+919731341356" class="contact-card contact-card-green" data-aos="fade-up" data-aos-delay="300">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="contact-info">
+            <p class="contact-label">Bride's Father (Muneer Ahmed)</p>
+            <p class="contact-number">+91 97313 41356</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-pattern" aria-hidden="true"></div>
+    <div class="footer-content">
+
+      <div class="footer-blessing" data-aos="fade-up">
+        <div class="arabic-blessing">بَارَكَ اللَّهُ لَكُمَا</div>
+        <div class="blessing-translation">May Allah bless you both</div>
+      </div>
+
+      <div class="footer-divider" data-aos="fade-in" data-aos-delay="200"></div>
+
+      <div class="footer-message" data-aos="fade-up" data-aos-delay="300">
+        <p>With love and dua from</p>
+        <p>The families of Sajjad & Ayesha</p>
+      </div>
+
+      <div class="footer-divider" data-aos="fade-in" data-aos-delay="400"></div>
+
+      <div class="footer-names" data-aos="fade-up" data-aos-delay="500">
+        Sajjad & Ayesha
+      </div>
+
+      <div class="footer-social" data-aos="fade-up" data-aos-delay="600">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/919074565602" target="_blank" rel="noopener noreferrer" class="social-icon">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Nandagokula+Convention+Centre%2C+Hassan"
+          target="_blank" rel="noopener noreferrer" class="social-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
+
+      <p class="footer-bottom" data-aos="fade-in" data-aos-delay="700">
+        Made with <span style="color:var(--gold);">♥</span> for Sajjad &amp; Ayesha's blessed union
+      </p>
+    </div>
+  </footer>
+
+  <!-- ===== BACKGROUND MUSIC ===== -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ===== MUTE / UNMUTE BUTTON ===== -->
+  <button id="mute-btn" aria-label="Toggle music" title="Toggle background music">
+    <!-- Sound icon -->
+    <svg id="icon-sound" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+    <!-- Muted icon -->
+    <svg id="icon-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+  </button>
+
+  <!-- ===== SCRIPTS ===== -->
+  <!-- Firebase Config -->
+  <script src="js/firebase-config.js"></script>
+
+  <!-- Main Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/countdown.js"></script>
+
+</body>
+
+</html>
