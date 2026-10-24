@@ -334,12 +334,12 @@
     <div class="rsvp-content">
       <div class="rsvp-header">
         <div class="rsvp-monogram">
-          <i class="fas fa-envelope-open-text"></i>
+          <span class="monogram-text">A &amp; A</span>
         </div>
-        <span class="section-eyebrow" data-aos="fade-up">— CELEBRATE WITH US —</span>
+        <span class="section-eyebrow" data-aos="fade-up">— KINDLY RESPOND —</span>
         <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">RSVP</h2>
         <p class="rsvp-subtitle" data-aos="fade-up" data-aos-delay="150">
-          Kindly confirm your presence by filling out the details below
+          Please let us know whether you will be joining our wedding celebration
         </p>
         <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
           <span class="ornament-line"></span>
@@ -353,23 +353,23 @@
           <!-- 1. Full Name -->
           <div class="rsvp-form-group">
             <label for="rsvpName" class="rsvp-label">
-              <i class="fas fa-user"></i> Full Name / പേര് <span class="rsvp-required">*</span>
+              <i class="fas fa-user"></i> Full Name <span class="rsvp-required">*</span>
             </label>
             <input
               type="text"
               id="rsvpName"
               name="name"
               class="rsvp-input"
-              placeholder="Enter your name / നിങ്ങളുടെ പേര്"
+              placeholder="Your Name"
               required
               autocomplete="name"
             />
           </div>
 
-          <!-- 2. Attendance Choice (Will Attend / Cannot Attend) -->
+          <!-- 2. Will You Attend? -->
           <div class="rsvp-form-group">
             <label class="rsvp-label">
-              <i class="fas fa-calendar-check"></i> Will You Attend? / പങ്കെടുക്കുമോ? <span class="rsvp-required">*</span>
+              <i class="fas fa-calendar-check"></i> Will You Attend? <span class="rsvp-required">*</span>
             </label>
             <div class="rsvp-attendance-grid">
               <label class="rsvp-attendance-option selected" id="rsvpOptionYes">
@@ -378,10 +378,7 @@
                   <div class="option-check-icon">
                     <i class="fas fa-check"></i>
                   </div>
-                  <div class="option-text">
-                    <span class="option-title">Yes, I will attend</span>
-                    <span class="option-sub">സന്തോഷത്തോടെ പങ്കെടുക്കും</span>
-                  </div>
+                  <span class="option-title">Yes, I will attend</span>
                 </div>
               </label>
 
@@ -391,10 +388,7 @@
                   <div class="option-check-icon">
                     <i class="fas fa-times"></i>
                   </div>
-                  <div class="option-text">
-                    <span class="option-title">Cannot attend</span>
-                    <span class="option-sub">പങ്കെടുക്കാൻ കഴിയില്ല</span>
-                  </div>
+                  <span class="option-title">Cannot attend</span>
                 </div>
               </label>
             </div>
@@ -403,11 +397,11 @@
           <!-- 3. Number of Guests (hidden when 'Cannot attend') -->
           <div class="rsvp-form-group" id="rsvpGuestsGroup">
             <label for="rsvpGuests" class="rsvp-label">
-              <i class="fas fa-users"></i> Number of Guests / എത്ര ആൾക്കാർ ഉണ്ടാവും? <span class="rsvp-required">*</span>
+              <i class="fas fa-users"></i> Number of Guests <span class="rsvp-required">*</span>
             </label>
             <div class="rsvp-select-wrapper">
               <select id="rsvpGuests" name="guests" class="rsvp-select">
-                <option value="1">1 Person (Just Me)</option>
+                <option value="1">1 Person</option>
                 <option value="2">2 Persons</option>
                 <option value="3">3 Persons</option>
                 <option value="4">4 Persons</option>
@@ -422,13 +416,13 @@
           <!-- 4. Message & Wishes -->
           <div class="rsvp-form-group">
             <label for="rsvpMessage" class="rsvp-label">
-              <i class="fas fa-heart"></i> Message &amp; Wishes / മെസ്സേജ് &amp; ആശംസകൾ
+              <i class="fas fa-heart"></i> Message &amp; Wishes
             </label>
             <textarea
               id="rsvpMessage"
               name="message"
               class="rsvp-textarea"
-              rows="3"
+              rows="4"
               placeholder="Write a prayer, blessing, or warm wish for Ashil &amp; Athira Elsa..."
             ></textarea>
           </div>
@@ -453,51 +447,15 @@
             <i class="fas fa-redo-alt"></i> Submit Another Response
           </button>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== WISHES WALL SECTION ===== -->
-  <section id="wishes-wall">
-    <div class="wishes-content">
-      <div class="wishes-header">
-        <div class="wishes-monogram">
-          <span class="monogram-text">A &amp; A</span>
-        </div>
-        <span class="section-eyebrow" data-aos="fade-up">— SEND YOUR LOVE —</span>
-        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Wishes Wall</h2>
-      </div>
-
-      <!-- Wishes Form -->
-      <div class="wishes-form-container" data-aos="fade-up" data-aos-delay="200">
-        <form class="wishes-form" id="wishesForm">
-          <div class="wishes-form-group">
-            <input type="text" id="wishesName" placeholder="Your name" class="wishes-input" required />
-          </div>
-
-          <div class="wishes-form-group">
-            <textarea id="wishesMessage" placeholder="Write a prayer, blessing, or warm wish for Ashil &amp; Athira Elsa..."
-              class="wishes-textarea" rows="4" required></textarea>
-          </div>
-
-          <button type="submit" class="wishes-submit-btn">
-            SEND WISH <i class="fas fa-heart"></i>
-          </button>
-        </form>
-
-        <div id="wishesSuccessMsg" style="display:none; text-align:center; margin-top:18px; color:var(--gold-dark); font-family:var(--font-serif); font-size:16px; font-style:italic;">
-          <i class="fas fa-check-circle" style="color:#25D366; margin-right:6px;"></i>
-          Thank you! Your heartfelt wish has been sent to Ashil &amp; Athira.
-        </div>
-
-        <div class="owner-access-wrap" style="text-align: center; margin-top: 28px;">
+        <div class="owner-access-wrap" style="text-align: center; margin-top: 24px;">
           <button type="button" id="ownerLoginBtn" class="owner-login-btn">
             <i class="fas fa-lock"></i> Owner View
           </button>
         </div>
       </div>
 
-      <!-- Wishes & RSVP Display (Admin View) -->
+      <!-- Owner View Display -->
       <div class="wishes-display" data-aos="fade-up" data-aos-delay="300" id="wishesDisplay" style="display: none;">
         
         <!-- Owner RSVP Overview Panel -->
@@ -505,6 +463,9 @@
           <div class="wishes-blessing-header" style="margin-bottom: 24px;">
             <span class="section-eyebrow">— ATTENDANCE OVERVIEW —</span>
             <h3 class="wishes-display-title">RSVP Responses</h3>
+            <div class="wishes-admin-badge" id="wishesAdminBadge" style="display: none; margin-top: 8px;">
+              <i class="fas fa-user-shield"></i> Owner Mode — tap the trash icon to delete an entry
+            </div>
           </div>
 
           <div class="rsvp-stats-grid">
@@ -523,26 +484,8 @@
           </div>
 
           <div class="rsvp-admin-list" id="rsvpAdminList">
-            <!-- Dynamically populated RSVPs -->
+            <!-- Dynamically populated RSVPs with delete button -->
           </div>
-        </div>
-
-        <!-- Wishes List -->
-        <div class="wishes-blessing-header">
-          <span class="section-eyebrow">— WISHES &amp; BLESSINGS —</span>
-          <h3 class="wishes-display-title">Words From Loved Ones</h3>
-          <div class="wishes-count">
-            <i class="fas fa-heart"></i> <span id="wishesCount">0</span> BLESSINGS RECEIVED
-          </div>
-          <div class="wishes-admin-badge" id="wishesAdminBadge" style="display: none;">
-            <i class="fas fa-user-shield"></i> Admin Mode — tap the trash icon to delete an entry
-          </div>
-        </div>
-
-        <div class="wishes-list" id="wishesList"></div>
-
-        <div class="wishes-view-more" id="viewMoreContainer" style="display: none;">
-          <button class="view-more-btn" id="viewMoreBtn">View More Wishes</button>
         </div>
       </div>
     </div>

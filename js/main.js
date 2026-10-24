@@ -178,9 +178,18 @@
     });
   }
 
-  // ===== RSVP FORM & MANAGEMENT =====
+  // ===== RSVP & OWNER VIEW =====
   function initRSVP() {
     var form = document.getElementById('rsvp-form');
+    var wishesDisplay = document.getElementById('wishesDisplay');
+    var ownerLoginBtn = document.getElementById('ownerLoginBtn');
+    var adminBadge = document.getElementById('wishesAdminBadge');
+    var panel = document.getElementById('ownerRsvpPanel');
+    var statTotal = document.getElementById('rsvpStatTotal');
+    var statAttending = document.getElementById('rsvpStatAttending');
+    var statDeclined = document.getElementById('rsvpStatDeclined');
+    var adminList = document.getElementById('rsvpAdminList');
+
     if (!form) return;
 
     var nameInput = document.getElementById('rsvpName');
@@ -194,27 +203,23 @@
     var successDesc = document.getElementById('rsvpSuccessDesc');
     var newResponseBtn = document.getElementById('rsvpNewResponseBtn');
 
-    // Attendance toggle interactions
+    // ── Attendance choice toggle ──────────────────────────────
     var radioInputs = form.querySelectorAll('input[name="attend"]');
     radioInputs.forEach(function(radio) {
       radio.addEventListener('change', function() {
         if (this.value === 'yes') {
           if (optionYes) optionYes.classList.add('selected');
           if (optionNo) optionNo.classList.remove('selected');
-          if (guestsGroup) {
-            guestsGroup.style.display = 'block';
-          }
+          if (guestsGroup) guestsGroup.style.display = 'block';
         } else {
           if (optionNo) optionNo.classList.add('selected');
           if (optionYes) optionYes.classList.remove('selected');
-          if (guestsGroup) {
-            guestsGroup.style.display = 'none';
-          }
+          if (guestsGroup) guestsGroup.style.display = 'none';
         }
       });
     });
 
-    // Save to localStorage fallback
+    // ── Local storage backup ──────────────────────────────────
     function saveLocalRSVP(item) {
       try {
         var existing = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
@@ -223,7 +228,7 @@
       } catch (e) {}
     }
 
-    // Form submission
+    // ── Form submission ───────────────────────────────────────
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -266,7 +271,7 @@
               ' has been received with joy. We look forward to celebrating with you!';
           } else {
             successDesc.textContent =
-              'Thank you, ' + name + '! We will miss you on our special day, but we deeply cherish your blessings and prayers.';
+              'Thank you, ' + name + '! We are sorry you cannot join us, but we deeply appreciate your warm prayers and blessings.';
           }
         }
 
@@ -275,7 +280,7 @@
           submitBtn.disabled = false;
         }
 
-        // Also if message is provided, save to wishes node as well so it appears on wishes wall
+        // Also if message is provided, save to wishes node as well
         if (message && database) {
           database.ref('wishes').push({
             name: name,
@@ -299,7 +304,7 @@
       }
     });
 
-    // Reset button
+    // ── Reset button ──────────────────────────────────────────
     if (newResponseBtn) {
       newResponseBtn.addEventListener('click', function() {
         form.reset();
@@ -311,30 +316,21 @@
         if (nameInput) nameInput.focus();
       });
     }
-  }
 
-  // ===== WISHES WALL WITH FIREBASE =====
-  function initWishesWall() {
-    var form = document.getElementById('wishesForm');
-    var wishesDisplay = document.getElementById('wishesDisplay');
-    var wishesList = document.getElementById('wishesList');
-    var wishesCount = document.getElementById('wishesCount');
-
-    // ── Admin / Owner mode ────────────────────────────────────
-    // Only the owner with the password can see the wishes list
+    // ── Owner View Authentication & Dashboard ────────────────
     var isAdmin = sessionStorage.getItem('wishesAdminAuthed') === 'true';
-    var adminBadge = document.getElementById('wishesAdminBadge');
-    var ownerLoginBtn = document.getElementById('ownerLoginBtn');
 
     function updateAdminUI() {
       if (adminBadge) adminBadge.style.display = isAdmin ? 'inline-flex' : 'none';
+      if (wishesDisplay) wishesDisplay.style.display = isAdmin ? 'block' : 'none';
       if (ownerLoginBtn) {
         ownerLoginBtn.innerHTML = isAdmin
           ? '<i class="fas fa-lock-open"></i> Log out of Owner View'
           : '<i class="fas fa-lock"></i> Owner View';
       }
-      displayWishes();
-      loadRsvpsForOwner();
+      if (isAdmin) {
+        loadRsvpsForOwner();
+      }
     }
 
     // Check ?admin=1 in URL
@@ -346,6 +342,7 @@
         if (entered === configuredPassword) {
           sessionStorage.setItem('wishesAdminAuthed', 'true');
           isAdmin = true;
+          updateAdminUI();
         } else if (entered !== null) {
           alert('Incorrect password.');
         }
@@ -369,7 +366,9 @@
           isAdmin = true;
           updateAdminUI();
           setTimeout(function() {
-            wishesDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (wishesDisplay) {
+              wishesDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
           }, 200);
         } else if (entered !== null) {
           alert('Incorrect password.');
@@ -377,123 +376,9 @@
       });
     }
 
-    var viewMoreContainer = document.getElementById('viewMoreContainer');
-    var viewMoreBtn = document.getElementById('viewMoreBtn');
-
-    if (!form || !wishesDisplay || !wishesList) return;
-
-    var displayLimit = 5;
-    var allWishes = [];
-    var showingAll = false;
-
-    // Get avatar color based on name
-    function getAvatarColor(name) {
-      var colors = [
-        'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)',
-        'linear-gradient(135deg, #C8385C 0%, #7A1230 100%)',
-        'linear-gradient(135deg, #D4A017 0%, #8F6608 100%)',
-        'linear-gradient(135deg, #3D6B99 0%, #1F4468 100%)',
-        'linear-gradient(135deg, #9C2F52 0%, #C9527A 100%)'
-      ];
-      var index = name.charCodeAt(0) % colors.length;
-      return colors[index];
-    }
-
-    // Create wish HTML
-    function createWishHTML(wish) {
-      var initial = wish.name.charAt(0).toUpperCase();
-      var avatarColor = getAvatarColor(wish.name);
-      
-      var div = document.createElement('div');
-      div.className = 'wish-item';
-      div.setAttribute('data-aos', 'fade-up');
-      
-      div.innerHTML = 
-        '<div class="wish-avatar" style="background: ' + avatarColor + ';">' +
-          '<span>' + initial + '</span>' +
-        '</div>' +
-        '<div class="wish-content">' +
-          '<div class="wish-author">' + escapeHtml(wish.name) + '</div>' +
-          '<div class="wish-message">' + escapeHtml(wish.message) + '</div>' +
-          '<div class="wish-time">' + formatDate(wish.timestamp) + '</div>' +
-        '</div>';
-
-      if (isAdmin && wish.id) {
-        var deleteBtn = document.createElement('button');
-        deleteBtn.type = 'button';
-        deleteBtn.className = 'wish-delete-btn';
-        deleteBtn.setAttribute('aria-label', 'Delete this wish');
-        deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-        deleteBtn.addEventListener('click', function() {
-          if (window.confirm('Delete the wish from "' + wish.name + '"? This cannot be undone.')) {
-            database.ref('wishes/' + wish.id).remove(function(error) {
-              if (error) {
-                alert('Could not delete: ' + error.message);
-              }
-            });
-          }
-        });
-        div.appendChild(deleteBtn);
-      }
-      
-      return div;
-    }
-
-    // Display wishes (Only shown to Owner in Admin mode)
-    function displayWishes() {
-      wishesList.innerHTML = '';
-      
-      if (!isAdmin) {
-        wishesDisplay.style.display = 'none';
-        return;
-      }
-
-      wishesDisplay.style.display = 'block';
-      wishesCount.textContent = allWishes.length;
-
-      if (allWishes.length === 0) {
-        wishesList.innerHTML = '<p style="text-align:center; color:var(--text-light); font-style:italic; padding:16px;">No wishes submitted yet.</p>';
-        if (viewMoreContainer) viewMoreContainer.style.display = 'none';
-        return;
-      }
-
-      var displayCount = showingAll ? allWishes.length : Math.min(displayLimit, allWishes.length);
-      var wishesToShow = allWishes.slice(0, displayCount);
-
-      wishesToShow.forEach(function(wish) {
-        var el = createWishHTML(wish);
-        wishesList.appendChild(el);
-        if (typeof window.observeAOS === 'function') {
-          window.observeAOS(el);
-        } else {
-          el.classList.add('aos-animate');
-        }
-      });
-
-      // Show/hide "View More" button
-      if (allWishes.length > displayLimit && !showingAll) {
-        viewMoreContainer.style.display = 'block';
-      } else {
-        viewMoreContainer.style.display = 'none';
-      }
-    }
-
-    // Load RSVPs in Owner View
+    // ── Load & render RSVPs in Owner View ────────────────────
     function loadRsvpsForOwner() {
-      var panel = document.getElementById('ownerRsvpPanel');
-      var statTotal = document.getElementById('rsvpStatTotal');
-      var statAttending = document.getElementById('rsvpStatAttending');
-      var statDeclined = document.getElementById('rsvpStatDeclined');
-      var adminList = document.getElementById('rsvpAdminList');
-
-      if (!panel) return;
-
-      if (!isAdmin) {
-        panel.style.display = 'none';
-        return;
-      }
-
-      panel.style.display = 'block';
+      if (!isAdmin) return;
 
       function renderRsvps(rsvps) {
         var totalAttendingGuests = 0;
@@ -591,132 +476,8 @@
       });
     }
 
-    // Load wishes from Firebase
-    function loadWishesFromFirebase() {
-      if (!database) return;
-
-      var wishesRef = database.ref('wishes');
-      
-      wishesRef.on('value', function(snapshot) {
-        allWishes = [];
-        var data = snapshot.val();
-        
-        if (data) {
-          Object.keys(data).forEach(function(key) {
-            var wish = data[key];
-            wish.id = key;
-            allWishes.push(wish);
-          });
-          
-          // Sort by timestamp (newest first)
-          allWishes.sort(function(a, b) {
-            return b.timestamp - a.timestamp;
-          });
-        }
-        
-        displayWishes();
-      });
-    }
-
-    // Save wish to Firebase
-    function saveWishToFirebase(wish, callback) {
-      if (!database) {
-        callback(false);
-        return;
-      }
-
-      var wishesRef = database.ref('wishes');
-      var newWishRef = wishesRef.push();
-      
-      newWishRef.set(wish, function(error) {
-        if (error) {
-          console.error('Error saving wish:', error);
-          callback(false);
-        } else {
-          callback(true);
-        }
-      });
-    }
-
-    // Handle form submission
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      var nameInput = document.getElementById('wishesName');
-      var messageInput = document.getElementById('wishesMessage');
-
-      var name = nameInput.value.trim();
-      var message = messageInput.value.trim();
-
-      if (!name || !message) {
-        alert('Please fill in both your name and message.');
-        return;
-      }
-
-      if (message.length > 500) {
-        alert('Message is too long. Please keep it under 500 characters.');
-        return;
-      }
-
-      var wish = {
-        name: name,
-        message: message,
-        timestamp: Date.now()
-      };
-
-      var btn = form.querySelector('.wishes-submit-btn');
-      var originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
-      btn.disabled = true;
-
-      saveWishToFirebase(wish, function(success) {
-        if (success) {
-          // Clear form
-          nameInput.value = '';
-          messageInput.value = '';
-
-          // Show success message
-          btn.innerHTML = '<i class="fas fa-check"></i> WISH SENT!';
-
-          var successMsg = document.getElementById('wishesSuccessMsg');
-          if (successMsg) {
-            successMsg.style.display = 'block';
-          }
-
-          setTimeout(function() {
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-          }, 3000);
-
-          if (isAdmin) {
-            // Scroll to wishes display only for owner
-            setTimeout(function() {
-              wishesDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 300);
-          }
-        } else {
-          alert('Unable to save your wish. Please check your internet connection and try again.');
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-        }
-      });
-    });
-
-    // View More button
-    if (viewMoreBtn) {
-      viewMoreBtn.addEventListener('click', function() {
-        showingAll = true;
-        displayWishes();
-      });
-    }
-
-    // Initialize
-    if (database) {
-      loadWishesFromFirebase();
-      loadRsvpsForOwner();
-    } else {
-      wishesDisplay.style.display = 'none';
-    }
+    // Initialize owner UI state
+    updateAdminUI();
   }
 
   // ===== INIT =====
@@ -727,6 +488,5 @@
     initSectionTracking();
     initLightbox();
     initRSVP();
-    initWishesWall();
   });
 })();
