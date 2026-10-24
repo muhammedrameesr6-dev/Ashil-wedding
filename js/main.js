@@ -4,6 +4,35 @@
 
   var CFG = window.WEDDING_CONFIG || {};
 
+  // ===== FIREBASE & SHARED HELPERS =====
+  var database = null;
+  try {
+    if (typeof firebase !== 'undefined' && firebase.database) {
+      database = firebase.database();
+    }
+  } catch (e) {
+    console.warn('Firebase init fallback:', e);
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text || '';
+    return div.innerHTML;
+  }
+
+  function formatDate(timestamp) {
+    var date = new Date(timestamp);
+    var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    var day = date.getDate();
+    var month = months[date.getMonth()];
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    return day + ' ' + month + ' AT ' + hours + ':' + minutes + ' ' + ampm;
+  }
+
   // ===== REAL VIEWPORT HEIGHT FIX (iOS Safari address-bar bug) =====
   // iOS Safari's 100vh/100dvh doesn't reliably match the true visible
   // viewport on some iPhones, leaving a white gap below fixed elements
@@ -149,6 +178,141 @@
     });
   }
 
+  // ===== RSVP FORM & MANAGEMENT =====
+  function initRSVP() {
+    var form = document.getElementById('rsvp-form');
+    if (!form) return;
+
+    var nameInput = document.getElementById('rsvpName');
+    var optionYes = document.getElementById('rsvpOptionYes');
+    var optionNo = document.getElementById('rsvpOptionNo');
+    var guestsGroup = document.getElementById('rsvpGuestsGroup');
+    var guestsSelect = document.getElementById('rsvpGuests');
+    var messageInput = document.getElementById('rsvpMessage');
+    var submitBtn = document.getElementById('rsvpSubmitBtn');
+    var successCard = document.getElementById('rsvpSuccessMsg');
+    var successDesc = document.getElementById('rsvpSuccessDesc');
+    var newResponseBtn = document.getElementById('rsvpNewResponseBtn');
+
+    // Attendance toggle interactions
+    var radioInputs = form.querySelectorAll('input[name="attend"]');
+    radioInputs.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        if (this.value === 'yes') {
+          if (optionYes) optionYes.classList.add('selected');
+          if (optionNo) optionNo.classList.remove('selected');
+          if (guestsGroup) {
+            guestsGroup.style.display = 'block';
+          }
+        } else {
+          if (optionNo) optionNo.classList.add('selected');
+          if (optionYes) optionYes.classList.remove('selected');
+          if (guestsGroup) {
+            guestsGroup.style.display = 'none';
+          }
+        }
+      });
+    });
+
+    // Save to localStorage fallback
+    function saveLocalRSVP(item) {
+      try {
+        var existing = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
+        existing.push(item);
+        localStorage.setItem('wedding_rsvps', JSON.stringify(existing));
+      } catch (e) {}
+    }
+
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var name = nameInput ? nameInput.value.trim() : '';
+      var checkedRadio = form.querySelector('input[name="attend"]:checked');
+      var attend = checkedRadio ? checkedRadio.value : 'yes';
+      var guests = (attend === 'yes') ? (parseInt(guestsSelect ? guestsSelect.value : 1, 10) || 1) : 0;
+      var message = messageInput ? messageInput.value.trim() : '';
+
+      if (!name) {
+        alert('Please enter your full name.');
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      var originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>SENDING RSVP...</span>';
+        submitBtn.disabled = true;
+      }
+
+      var rsvpData = {
+        name: name,
+        attend: attend,
+        guests: guests,
+        message: message,
+        timestamp: Date.now()
+      };
+
+      function finishSubmission() {
+        form.style.display = 'none';
+        if (successCard) {
+          successCard.style.display = 'block';
+        }
+        if (successDesc) {
+          if (attend === 'yes') {
+            successDesc.textContent =
+              'Thank you, ' + name + '! Your RSVP for ' +
+              (guests === 1 ? '1 guest' : guests + ' guests') +
+              ' has been received with joy. We look forward to celebrating with you!';
+          } else {
+            successDesc.textContent =
+              'Thank you, ' + name + '! We will miss you on our special day, but we deeply cherish your blessings and prayers.';
+          }
+        }
+
+        if (submitBtn) {
+          submitBtn.innerHTML = originalBtnHTML;
+          submitBtn.disabled = false;
+        }
+
+        // Also if message is provided, save to wishes node as well so it appears on wishes wall
+        if (message && database) {
+          database.ref('wishes').push({
+            name: name,
+            message: message,
+            timestamp: Date.now()
+          });
+        }
+      }
+
+      if (database) {
+        database.ref('rsvps').push(rsvpData, function(error) {
+          if (error) {
+            console.error('Firebase RSVP error:', error);
+            saveLocalRSVP(rsvpData);
+          }
+          finishSubmission();
+        });
+      } else {
+        saveLocalRSVP(rsvpData);
+        finishSubmission();
+      }
+    });
+
+    // Reset button
+    if (newResponseBtn) {
+      newResponseBtn.addEventListener('click', function() {
+        form.reset();
+        if (optionYes) optionYes.classList.add('selected');
+        if (optionNo) optionNo.classList.remove('selected');
+        if (guestsGroup) guestsGroup.style.display = 'block';
+        if (successCard) successCard.style.display = 'none';
+        form.style.display = 'block';
+        if (nameInput) nameInput.focus();
+      });
+    }
+  }
+
   // ===== WISHES WALL WITH FIREBASE =====
   function initWishesWall() {
     var form = document.getElementById('wishesForm');
@@ -170,6 +334,7 @@
           : '<i class="fas fa-lock"></i> Owner View';
       }
       displayWishes();
+      loadRsvpsForOwner();
     }
 
     // Check ?admin=1 in URL
@@ -220,28 +385,6 @@
     var displayLimit = 5;
     var allWishes = [];
     var showingAll = false;
-    var database = null;
-
-    // Check if Firebase is available
-    try {
-      database = firebase.database();
-    } catch (e) {
-      console.warn('Firebase not configured. Using localStorage fallback.');
-    }
-
-    // Format date
-    function formatDate(timestamp) {
-      var date = new Date(timestamp);
-      var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-      var day = date.getDate();
-      var month = months[date.getMonth()];
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12 || 12;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      return day + ' ' + month + ' AT ' + hours + ':' + minutes + ' ' + ampm;
-    }
 
     // Get avatar color based on name
     function getAvatarColor(name) {
@@ -287,8 +430,6 @@
               if (error) {
                 alert('Could not delete: ' + error.message);
               }
-              // No manual re-render needed — the Firebase .on('value')
-              // listener will pick up the change and refresh the list.
             });
           }
         });
@@ -298,18 +439,11 @@
       return div;
     }
 
-    // Escape HTML to prevent XSS
-    function escapeHtml(text) {
-      var div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
     // Display wishes (Only shown to Owner in Admin mode)
     function displayWishes() {
       wishesList.innerHTML = '';
       
-      if (!isAdmin || allWishes.length === 0) {
+      if (!isAdmin) {
         wishesDisplay.style.display = 'none';
         return;
       }
@@ -317,14 +451,18 @@
       wishesDisplay.style.display = 'block';
       wishesCount.textContent = allWishes.length;
 
+      if (allWishes.length === 0) {
+        wishesList.innerHTML = '<p style="text-align:center; color:var(--text-light); font-style:italic; padding:16px;">No wishes submitted yet.</p>';
+        if (viewMoreContainer) viewMoreContainer.style.display = 'none';
+        return;
+      }
+
       var displayCount = showingAll ? allWishes.length : Math.min(displayLimit, allWishes.length);
       var wishesToShow = allWishes.slice(0, displayCount);
 
       wishesToShow.forEach(function(wish) {
         var el = createWishHTML(wish);
         wishesList.appendChild(el);
-        // Hook into the fade-up scroll animation, or reveal immediately
-        // as a fallback if the animation script hasn't loaded yet.
         if (typeof window.observeAOS === 'function') {
           window.observeAOS(el);
         } else {
@@ -338,6 +476,119 @@
       } else {
         viewMoreContainer.style.display = 'none';
       }
+    }
+
+    // Load RSVPs in Owner View
+    function loadRsvpsForOwner() {
+      var panel = document.getElementById('ownerRsvpPanel');
+      var statTotal = document.getElementById('rsvpStatTotal');
+      var statAttending = document.getElementById('rsvpStatAttending');
+      var statDeclined = document.getElementById('rsvpStatDeclined');
+      var adminList = document.getElementById('rsvpAdminList');
+
+      if (!panel) return;
+
+      if (!isAdmin) {
+        panel.style.display = 'none';
+        return;
+      }
+
+      panel.style.display = 'block';
+
+      function renderRsvps(rsvps) {
+        var totalAttendingGuests = 0;
+        var totalDeclined = 0;
+
+        rsvps.forEach(function(r) {
+          if (r.attend === 'yes') {
+            totalAttendingGuests += (parseInt(r.guests, 10) || 1);
+          } else {
+            totalDeclined++;
+          }
+        });
+
+        if (statTotal) statTotal.textContent = rsvps.length;
+        if (statAttending) statAttending.textContent = totalAttendingGuests;
+        if (statDeclined) statDeclined.textContent = totalDeclined;
+
+        if (!adminList) return;
+        adminList.innerHTML = '';
+
+        if (rsvps.length === 0) {
+          adminList.innerHTML = '<p style="text-align:center; color:var(--text-light); font-style:italic; padding:18px;">No RSVPs received yet.</p>';
+          return;
+        }
+
+        rsvps.forEach(function(item) {
+          var card = document.createElement('div');
+          card.className = 'rsvp-admin-item';
+
+          var isAttending = item.attend === 'yes';
+          var badgeClass = isAttending ? 'attending' : 'declined';
+          var badgeText = isAttending
+            ? ('<i class="fas fa-check"></i> Attending (' + (item.guests || 1) + ' guest' + ((item.guests || 1) > 1 ? 's' : '') + ')')
+            : '<i class="fas fa-times"></i> Cannot Attend';
+
+          var html =
+            '<div class="rsvp-admin-info">' +
+              '<div class="rsvp-admin-header">' +
+                '<span class="rsvp-admin-name">' + escapeHtml(item.name) + '</span>' +
+                '<span class="rsvp-badge ' + badgeClass + '">' + badgeText + '</span>' +
+              '</div>';
+
+          if (item.message) {
+            html += '<div class="rsvp-admin-msg">“' + escapeHtml(item.message) + '”</div>';
+          }
+
+          if (item.timestamp) {
+            html += '<div class="rsvp-admin-time"><i class="far fa-clock"></i> ' + formatDate(item.timestamp) + '</div>';
+          }
+
+          html += '</div>';
+          card.innerHTML = html;
+
+          if (isAdmin && item.id && database) {
+            var delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'rsvp-delete-btn';
+            delBtn.setAttribute('aria-label', 'Delete RSVP');
+            delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+            delBtn.addEventListener('click', function() {
+              if (window.confirm('Delete RSVP from "' + item.name + '"?')) {
+                database.ref('rsvps/' + item.id).remove();
+              }
+            });
+            card.appendChild(delBtn);
+          }
+
+          adminList.appendChild(card);
+        });
+      }
+
+      if (!database) {
+        var localRsvps = [];
+        try {
+          localRsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
+        } catch (e) {}
+        renderRsvps(localRsvps);
+        return;
+      }
+
+      database.ref('rsvps').on('value', function(snapshot) {
+        var data = snapshot.val();
+        var rsvps = [];
+        if (data) {
+          Object.keys(data).forEach(function(key) {
+            var item = data[key];
+            item.id = key;
+            rsvps.push(item);
+          });
+          rsvps.sort(function(a, b) {
+            return (b.timestamp || 0) - (a.timestamp || 0);
+          });
+        }
+        renderRsvps(rsvps);
+      });
     }
 
     // Load wishes from Firebase
@@ -462,6 +713,7 @@
     // Initialize
     if (database) {
       loadWishesFromFirebase();
+      loadRsvpsForOwner();
     } else {
       wishesDisplay.style.display = 'none';
     }
@@ -474,6 +726,7 @@
     initMobileNav();
     initSectionTracking();
     initLightbox();
+    initRSVP();
     initWishesWall();
   });
 })();

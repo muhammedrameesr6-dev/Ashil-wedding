@@ -64,62 +64,6 @@
     });
   }
 
-  // ===== RSVP FORM =====
-  function initRSVP() {
-    var form = document.getElementById('rsvp-form');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = form.querySelector('.rsvp-btn');
-      var originalHTML = btn.innerHTML;
-      var cfg = (window.WEDDING_CONFIG || {});
-
-      // Collect form data
-      var data = {
-        name:    form.querySelector('[name="name"]')    ? form.querySelector('[name="name"]').value    : '',
-        phone:   form.querySelector('[name="phone"]')   ? form.querySelector('[name="phone"]').value   : '',
-        guests:  form.querySelector('[name="guests"]')  ? form.querySelector('[name="guests"]').value  : '',
-        event:   form.querySelector('[name="event"]')   ? form.querySelector('[name="event"]').value   : '',
-        message: form.querySelector('[name="message"]') ? form.querySelector('[name="message"]').value : '',
-        attend:  form.querySelector('[name="attend"]:checked') ? form.querySelector('[name="attend"]:checked').value : '',
-      };
-
-      // Loading state
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending…</span>';
-      btn.disabled = true;
-
-      // Post to Google Sheets (if URL provided in config, else simulate)
-      var sheetsUrl = cfg.sheetsUrl || '';
-      var doPost = sheetsUrl
-        ? fetch(sheetsUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          })
-        : Promise.resolve();
-
-      doPost
-        .then(function() {
-          btn.innerHTML = '<span style="color:#fff">✓ Jazakallah Khair!</span>';
-          btn.style.background = 'linear-gradient(135deg,#6a9f6a,#3d7a3d)';
-          setTimeout(function() {
-            btn.innerHTML = originalHTML;
-            btn.style.background = '';
-            btn.disabled = false;
-            form.reset();
-          }, 3500);
-        })
-        .catch(function() {
-          btn.innerHTML = '<span>Please try again</span>';
-          btn.disabled = false;
-          setTimeout(function() { btn.innerHTML = originalHTML; }, 2000);
-        });
-    });
-  }
-
-
   // ===== COUNTDOWN FLIP ANIMATION STYLE =====
   function addCountdownStyle() {
     const style = document.createElement('style');
@@ -141,7 +85,6 @@
     initAOS();
     initNav();
     initSmoothScroll();
-    initRSVP();
     addCountdownStyle();
   }
 
