@@ -2670,7 +2670,9 @@ footer {
 }
 
 .parents-card-siblings {
-  margin-top: 24px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(212, 160, 23, 0.25);
   font-family: var(--font-sans);
   font-size: clamp(14px, 1.8vw, 16px);
   color: var(--text-medium);
@@ -2685,7 +2687,7 @@ footer {
   text-transform: uppercase;
   color: var(--gold-dark);
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   margin-top: 0;
   font-family: var(--font-body);
 }
@@ -2694,7 +2696,8 @@ footer {
   font-family: var(--font-sans);
   font-size: clamp(15px, 2vw, 17px);
   color: var(--text-medium);
-  line-height: 2;
+  line-height: 1.6;
+  font-weight: 600;
 }
 
 .parent-address {

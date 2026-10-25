@@ -29,7 +29,7 @@ window.WEDDING_CONFIG = {
     ],
     address:           'Pulikkottil House, Pleasant Villa Karikkad, Thrissur Dt., Pin: 680519',
     phone:             '+91 99611 22059',
-    grandParents:      'Grandson of (Late) Varudhukutty & (Late) Elichikutty, (Late) Chakkappu & (Late) Kunjummu',
+    brother:           'Ansil Johnson',
   },
 
   bride: {
@@ -42,6 +42,7 @@ window.WEDDING_CONFIG = {
       { name: 'Mrs. Jiji Jose', prefix: '&' },
     ],
     address:           'Nedumtharayil House, Athirabhavan, V Kottayam, Pathanamthitta Dt.',
+    brother:           'Ajo Daniel Jose',
   },
 
   /* ── HOSTING FAMILY ─────────────────────────────────────── */
