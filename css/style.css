@@ -1340,20 +1340,35 @@ body.gate-active {
   margin: 24px 0;
 }
 
+.event-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+  .event-actions-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 /* GET DIRECTIONS Button */
 .event-directions-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  padding: 18px 32px;
+  padding: 16px 20px;
   background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
   color: var(--white);
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 12px;
@@ -1367,9 +1382,47 @@ body.gate-active {
 }
 
 .event-directions-btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(201,56,92,0.4);
   background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+}
+
+.event-satellite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #2C1A12 0%, #1A0F08 100%);
+  color: var(--gold-light);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 160, 23, 0.45);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(44, 26, 18, 0.25);
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.event-satellite-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3D2418 0%, #24140B 100%);
+  border-color: var(--gold);
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.35);
+}
+
+.event-satellite-btn i {
+  font-size: 14px;
+  color: var(--gold);
 }
 
 .event-directions-btn-gold {

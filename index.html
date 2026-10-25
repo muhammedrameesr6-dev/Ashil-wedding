@@ -77,7 +77,7 @@
   <!-- ===== HERO ===== -->
   <section id="hero" aria-label="Hero">
     <div class="hero-bg-image">
-      <img src="assets/images/IMG_0015.jpg.jpeg" alt="Ashil and Athira Elsa" />
+      <img src="assets/images/hero-couple.jpg?v=3" alt="Ashil and Athira Elsa" />
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-vignette" aria-hidden="true"></div>
@@ -265,11 +265,18 @@
             </div>
           </div>
 
-          <a href="https://www.google.com/maps/search/?api=1&query=Mar+Ignation+Orthodox+Syrian+Church%2C+Kattakampal"
-            target="_blank" rel="noopener noreferrer" class="event-directions-btn">
-            <i class="fas fa-map-marker-alt"></i>
-            GET DIRECTIONS
-          </a>
+          <div class="event-actions-row">
+            <a href="https://www.google.com/maps/search/?api=1&query=Mar+Ignation+Orthodox+Syrian+Church%2C+Kattakampal"
+              target="_blank" rel="noopener noreferrer" class="event-directions-btn">
+              <i class="fas fa-map-marker-alt"></i>
+              GET DIRECTIONS
+            </a>
+            <a href="https://maps.google.com/maps?q=Mar+Ignation+Orthodox+Syrian+Church,+Kattakampal&t=k"
+              target="_blank" rel="noopener noreferrer" class="event-satellite-btn">
+              <i class="fas fa-satellite"></i>
+              SATELLITE VIEW
+            </a>
+          </div>
         </div>
 
         <!-- ── EVENT 2: LUNCH & RECEPTION ── -->
@@ -310,11 +317,18 @@
             </div>
           </div>
 
-          <a href="https://maps.app.goo.gl/Ly4dnR2w5ts1pYzM9"
-            target="_blank" rel="noopener noreferrer" class="event-directions-btn">
-            <i class="fas fa-map-marker-alt"></i>
-            GET DIRECTIONS
-          </a>
+          <div class="event-actions-row">
+            <a href="https://maps.app.goo.gl/Ly4dnR2w5ts1pYzM9"
+              target="_blank" rel="noopener noreferrer" class="event-directions-btn">
+              <i class="fas fa-map-marker-alt"></i>
+              GET DIRECTIONS
+            </a>
+            <a href="https://maps.google.com/maps?q=St.+Mary's+Orthodox+Cathedral,+Pazhanji&t=k"
+              target="_blank" rel="noopener noreferrer" class="event-satellite-btn">
+              <i class="fas fa-satellite"></i>
+              SATELLITE VIEW
+            </a>
+          </div>
         </div>
 
       </div>
@@ -334,12 +348,12 @@
     <div class="rsvp-content">
       <div class="rsvp-header">
         <div class="rsvp-monogram">
-          <span class="monogram-text">A &amp; A</span>
+          <i class="fas fa-envelope-open-text"></i>
         </div>
         <span class="section-eyebrow" data-aos="fade-up">— KINDLY RESPOND —</span>
         <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">RSVP</h2>
         <p class="rsvp-subtitle" data-aos="fade-up" data-aos-delay="150">
-          Please let us know whether you will be joining our wedding celebration
+          Please let us know whether you can attend our wedding celebrations
         </p>
         <div class="ornament-divider" data-aos="fade-in" data-aos-delay="200">
           <span class="ornament-line"></span>
@@ -360,7 +374,7 @@
               id="rsvpName"
               name="name"
               class="rsvp-input"
-              placeholder="Your Name"
+              placeholder="Your full name"
               required
               autocomplete="name"
             />
@@ -378,7 +392,10 @@
                   <div class="option-check-icon">
                     <i class="fas fa-check"></i>
                   </div>
-                  <span class="option-title">Yes, I will attend</span>
+                  <div class="option-text">
+                    <span class="option-title">Yes, I will attend</span>
+                    <span class="option-sub">Joyfully accept</span>
+                  </div>
                 </div>
               </label>
 
@@ -388,20 +405,23 @@
                   <div class="option-check-icon">
                     <i class="fas fa-times"></i>
                   </div>
-                  <span class="option-title">Cannot attend</span>
+                  <div class="option-text">
+                    <span class="option-title">Cannot attend</span>
+                    <span class="option-sub">Regretfully decline</span>
+                  </div>
                 </div>
               </label>
             </div>
           </div>
 
-          <!-- 3. Number of Guests (hidden when 'Cannot attend') -->
+          <!-- 3. Number of Guests -->
           <div class="rsvp-form-group" id="rsvpGuestsGroup">
             <label for="rsvpGuests" class="rsvp-label">
               <i class="fas fa-users"></i> Number of Guests <span class="rsvp-required">*</span>
             </label>
             <div class="rsvp-select-wrapper">
               <select id="rsvpGuests" name="guests" class="rsvp-select">
-                <option value="1">1 Person</option>
+                <option value="1">1 Person (Just Me)</option>
                 <option value="2">2 Persons</option>
                 <option value="3">3 Persons</option>
                 <option value="4">4 Persons</option>
@@ -422,7 +442,7 @@
               id="rsvpMessage"
               name="message"
               class="rsvp-textarea"
-              rows="4"
+              rows="3"
               placeholder="Write a prayer, blessing, or warm wish for Ashil &amp; Athira Elsa..."
             ></textarea>
           </div>
@@ -434,7 +454,7 @@
           </button>
         </form>
 
-        <!-- Success Message -->
+        <!-- Success Confirmation Message -->
         <div id="rsvpSuccessMsg" class="rsvp-success-card" style="display: none;">
           <div class="rsvp-success-icon">
             <i class="fas fa-check-circle"></i>
@@ -448,14 +468,14 @@
           </button>
         </div>
 
-        <div class="owner-access-wrap" style="text-align: center; margin-top: 24px;">
+        <div class="owner-access-wrap" style="text-align: center; margin-top: 28px;">
           <button type="button" id="ownerLoginBtn" class="owner-login-btn">
             <i class="fas fa-lock"></i> Owner View
           </button>
         </div>
       </div>
 
-      <!-- Owner View Display -->
+      <!-- RSVP Display (Admin View) -->
       <div class="wishes-display" data-aos="fade-up" data-aos-delay="300" id="wishesDisplay" style="display: none;">
         
         <!-- Owner RSVP Overview Panel -->
@@ -463,9 +483,6 @@
           <div class="wishes-blessing-header" style="margin-bottom: 24px;">
             <span class="section-eyebrow">— ATTENDANCE OVERVIEW —</span>
             <h3 class="wishes-display-title">RSVP Responses</h3>
-            <div class="wishes-admin-badge" id="wishesAdminBadge" style="display: none; margin-top: 8px;">
-              <i class="fas fa-user-shield"></i> Owner Mode — tap the trash icon to delete an entry
-            </div>
           </div>
 
           <div class="rsvp-stats-grid">
@@ -484,8 +501,26 @@
           </div>
 
           <div class="rsvp-admin-list" id="rsvpAdminList">
-            <!-- Dynamically populated RSVPs with delete button -->
+            <!-- Dynamically populated RSVPs -->
           </div>
+        </div>
+
+        <!-- Wishes List -->
+        <div class="wishes-blessing-header">
+          <span class="section-eyebrow">— WISHES &amp; BLESSINGS —</span>
+          <h3 class="wishes-display-title">Words From Loved Ones</h3>
+          <div class="wishes-count">
+            <i class="fas fa-heart"></i> <span id="wishesCount">0</span> BLESSINGS RECEIVED
+          </div>
+          <div class="wishes-admin-badge" id="wishesAdminBadge" style="display: none;">
+            <i class="fas fa-user-shield"></i> Admin Mode — tap the trash icon to delete an entry
+          </div>
+        </div>
+
+        <div class="wishes-list" id="wishesList"></div>
+
+        <div class="wishes-view-more" id="viewMoreContainer" style="display: none;">
+          <button class="view-more-btn" id="viewMoreBtn">View More Wishes</button>
         </div>
       </div>
     </div>
