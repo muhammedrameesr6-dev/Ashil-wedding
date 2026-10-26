@@ -836,50 +836,109 @@ body.gate-active {
   }
 }
 
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
+/* ===== HERO SCROLL DOWN INDICATOR (Positioned higher, fully visible on mobile) ===== */
+.hero-scroll-indicator {
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  opacity: 0;
-  animation: fadeIn 1s ease 2.5s forwards, heroScrollBounce 2.4s ease-in-out 3s infinite;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  color: var(--gold-light, #f5e4b2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: scrollIndicatorPulse 2.2s ease-in-out infinite;
+  z-index: 4;
 }
 
-@keyframes heroScrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
+.hero-scroll-indicator:hover,
+.hero-scroll-indicator:active {
+  transform: translateY(3px);
+  color: #fff;
 }
 
-.scroll-mouse {
-  width: 24px;
-  height: 38px;
-  border: 2px solid rgba(248, 235, 215, 0.6);
-  border-radius: 12px;
-  position: relative;
+.scroll-arrow-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(20, 8, 12, 0.65);
+  border: 1.5px solid rgba(212, 160, 23, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 14px rgba(212, 160, 23, 0.3);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
-.scroll-wheel {
-  width: 4px;
-  height: 8px;
-  background: var(--gold);
-  border-radius: 2px;
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 1.5s ease-in-out infinite;
+.hero-scroll-indicator:hover .scroll-arrow-wrap,
+.hero-scroll-indicator:active .scroll-arrow-wrap {
+  background: rgba(212, 160, 23, 0.9);
+  border-color: #ffd875;
+  transform: scale(1.08);
 }
 
-.scroll-text {
+.scroll-arrow-icon {
+  font-size: 14px;
+  color: var(--gold-light, #f5e4b2);
+  transition: transform 0.3s ease, color 0.3s ease;
+  animation: chevronBounce 1.5s ease-in-out infinite;
+}
+
+.hero-scroll-indicator:hover .scroll-arrow-icon,
+.hero-scroll-indicator:active .scroll-arrow-icon {
+  color: #1a0f0a;
+}
+
+.scroll-label {
+  font-family: var(--font-sans, 'Lato', sans-serif);
   font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--gold-dark);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(248, 235, 215, 0.9);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+}
+
+@keyframes chevronBounce {
+  0%, 100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes scrollIndicatorPulse {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-scroll-indicator {
+    margin-top: 14px;
+    gap: 4px;
+  }
+  .scroll-arrow-wrap {
+    width: 32px;
+    height: 32px;
+  }
+  .scroll-arrow-icon {
+    font-size: 12px;
+  }
+  .scroll-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
 }
 
 /* ===== OPENING INVITATION ===== */

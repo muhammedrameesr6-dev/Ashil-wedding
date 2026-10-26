@@ -318,12 +318,6 @@
   }
 }
 
-/* ===== SHORT VIEWPORTS: avoid scroll-hint overlapping hero text ===== */
-@media (max-height: 700px) {
-  .hero-scroll-hint {
-    display: none;
-  }
-}
 /* ===== OUR STORY RESPONSIVE ===== */
 @media (max-width: 900px) {
   #our-story {
