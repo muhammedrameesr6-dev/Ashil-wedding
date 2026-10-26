@@ -9,7 +9,7 @@ window.WEDDING_CONFIG = {
   /* ── SEO & METADATA ─────────────────────────────────────── */
   seo: {
     title:             'Ashil Johnson & Dr. Athira Elsa Jose | Wedding Invitation',
-    description:       '“They are no longer two, but one” (Matthew 19:6). Join us in celebrating the holy matrimony of Ashil Johnson & Dr. Athira Elsa Jose on Sunday, 31 January 2027 at Mar Ignation Orthodox Syrian Church, Kattakampal, followed by Lunch at Cathedral Hall, Pazhanji.',
+    description:       '“They are no longer two, but one” (Matthew 19:6). Join us in celebrating the holy matrimony of Ashil Johnson & Dr. Athira Elsa Jose on Sunday, 31 January 2027 at Mar Ignatios Orthodox Syrian Church, Kattakampal, followed by Lunch at Cathedral Hall, Pazhanji.',
     ogTitle:           'Ashil Johnson & Dr. Athira Elsa Jose | Wedding Invitation',
     ogDescription:     'You are warmly invited to the wedding of Ashil Johnson & Dr. Athira Elsa Jose — Sunday, 31 January 2027.',
     ogImage:           'og-image.jpg',
@@ -83,10 +83,10 @@ window.WEDDING_CONFIG = {
       date:      '31 January 2027',
       time:      '10:30 AM',
       venue: {
-        name:    'MAR IGNATION ORTHODOX SYRIAN CHURCH',
+        name:    'MAR IGNATIOS ORTHODOX SYRIAN CHURCH',
         address: 'Kattakampal, Thrissur',
       },
-      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Mar+Ignation+Orthodox+Syrian+Church%2C+Kattakampal',
+      mapsUrl:   'https://www.google.com/maps/search/?api=1&query=Mar+Ignatios+Orthodox+Syrian+Church%2C+Kattakampal',
       mapsLabel: 'Open Google Maps',
     },
     {
