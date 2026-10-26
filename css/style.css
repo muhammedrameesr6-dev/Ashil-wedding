@@ -842,14 +842,14 @@ body.gate-active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  margin-top: 20px;
+  gap: 4px;
+  margin-top: 14px;
   text-decoration: none;
   cursor: pointer;
   touch-action: manipulation;
   color: var(--gold-light, #f5e4b2);
   transition: transform 0.3s ease, opacity 0.3s ease;
-  animation: scrollIndicatorPulse 2.2s ease-in-out infinite;
+  animation: scrollIndicatorPulse 2s ease-in-out infinite;
   z-index: 4;
 }
 
@@ -863,29 +863,29 @@ body.gate-active {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(20, 8, 12, 0.65);
-  border: 1.5px solid rgba(212, 160, 23, 0.7);
+  background: rgba(20, 8, 12, 0.7);
+  border: 1.5px solid rgba(212, 160, 23, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 14px rgba(212, 160, 23, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 16px rgba(212, 160, 23, 0.35);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
 .hero-scroll-indicator:hover .scroll-arrow-wrap,
 .hero-scroll-indicator:active .scroll-arrow-wrap {
-  background: rgba(212, 160, 23, 0.9);
+  background: rgba(212, 160, 23, 0.95);
   border-color: #ffd875;
   transform: scale(1.08);
 }
 
 .scroll-arrow-icon {
   font-size: 14px;
-  color: var(--gold-light, #f5e4b2);
+  color: #ffd875;
   transition: transform 0.3s ease, color 0.3s ease;
-  animation: chevronBounce 1.5s ease-in-out infinite;
+  animation: chevronBounce 1.4s ease-in-out infinite;
 }
 
 .hero-scroll-indicator:hover .scroll-arrow-icon,
@@ -895,12 +895,12 @@ body.gate-active {
 
 .scroll-label {
   font-family: var(--font-sans, 'Lato', sans-serif);
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: rgba(248, 235, 215, 0.9);
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+  font-weight: 700;
+  color: #ffd875;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
 }
 
 @keyframes chevronBounce {
@@ -925,8 +925,8 @@ body.gate-active {
 
 @media (max-width: 480px) {
   .hero-scroll-indicator {
-    margin-top: 14px;
-    gap: 4px;
+    margin-top: 10px;
+    gap: 3px;
   }
   .scroll-arrow-wrap {
     width: 32px;
@@ -936,8 +936,8 @@ body.gate-active {
     font-size: 12px;
   }
   .scroll-label {
-    font-size: 9px;
-    letter-spacing: 0.18em;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
   }
 }
 
