@@ -123,7 +123,7 @@ window.WEDDING_CONFIG = {
   /* ── REGARDS SECTION ─────────────────────────────────────── */
   regards: {
     heading: 'WITH BEST COMPLIMENTS',
-    compliments: 'Adlyn, Genisis',
+    compliments: 'Adlyn, Genesis',
     columns: [
       {
         role:   "Groom's Family",
@@ -146,7 +146,7 @@ window.WEDDING_CONFIG = {
   /* ── FOOTER ──────────────────────────────────────────────── */
   footer: {
     message:     'We look forward to celebrating this sacred day with you.',
-    tagline:     'With best compliments: Adlyn, Genisis',
+    tagline:     'With best compliments: Adlyn, Genesis',
   },
 
   /* ── ADMIN (Wishes Wall moderation) ───────────────────────── */
