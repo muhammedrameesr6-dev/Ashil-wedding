@@ -773,6 +773,69 @@ body.gate-active {
   text-align: center;
 }
 
+.hero-quick-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.hero-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(20, 8, 12, 0.6);
+  border: 1px solid rgba(212, 160, 23, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.hero-nav-pill:hover,
+.hero-nav-pill:active {
+  background: rgba(212, 160, 23, 0.95);
+  color: #1a0f0a;
+  border-color: #ffd875;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.4);
+}
+
+.hero-nav-pill.highlight {
+  background: linear-gradient(135deg, rgba(212, 160, 23, 0.9) 0%, rgba(184, 134, 11, 0.95) 100%);
+  color: #1a0f0a;
+  border-color: #ffd875;
+  box-shadow: 0 4px 18px rgba(212, 160, 23, 0.4);
+}
+
+.hero-nav-pill.highlight:hover,
+.hero-nav-pill.highlight:active {
+  background: #ffd875;
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 480px) {
+  .hero-nav-pill {
+    padding: 7px 13px;
+    font-size: 11px;
+    gap: 5px;
+  }
+}
+
 .hero-scroll-hint {
   position: absolute;
   bottom: 40px;
@@ -3083,17 +3146,19 @@ footer {
 #lightbox {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: rgba(14, 6, 9, 0.96);
+  z-index: 999999;
+  background: rgba(14, 6, 9, 0.97);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 20px;
+  padding: 16px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #lightbox.active {
@@ -3103,21 +3168,22 @@ footer {
 
 #lightbox-img {
   max-width: 90vw;
-  max-height: 85vh;
+  max-height: 82vh;
   object-fit: contain;
   border-radius: 10px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(212, 160, 23, 0.45);
   transition: transform 0.25s ease;
+  touch-action: manipulation;
 }
 
 .lightbox-btn {
   position: absolute;
-  background: rgba(212, 160, 23, 0.22);
-  border: 1px solid rgba(212, 160, 23, 0.5);
+  background: rgba(35, 12, 18, 0.8);
+  border: 1.5px solid rgba(212, 160, 23, 0.65);
   color: var(--gold-light, #f5e4b2);
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -3125,38 +3191,65 @@ footer {
   cursor: pointer;
   font-size: 18px;
   transition: background 0.25s ease, transform 0.2s ease, color 0.25s ease;
-  z-index: 10001;
+  z-index: 1000001;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.lightbox-btn:hover {
-  background: rgba(212, 160, 23, 0.55);
-  color: #fff;
+.lightbox-btn:hover,
+.lightbox-btn:active {
+  background: rgba(212, 160, 23, 0.85);
+  color: #1a0f0a;
   transform: scale(1.1);
 }
 
 #lightbox-close {
-  top: 24px;
-  right: 24px;
+  top: 20px;
+  right: 20px;
 }
 
 #lightbox-prev {
-  left: 24px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-#lightbox-prev:hover {
+#lightbox-prev:hover,
+#lightbox-prev:active {
   transform: translateY(-50%) scale(1.1);
 }
 
 #lightbox-next {
-  right: 24px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-#lightbox-next:hover {
+#lightbox-next:hover,
+#lightbox-next:active {
   transform: translateY(-50%) scale(1.1);
+}
+
+@media (max-width: 600px) {
+  #lightbox-img {
+    max-width: 94vw;
+    max-height: 75vh;
+  }
+  .lightbox-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+  #lightbox-close {
+    top: 14px;
+    right: 14px;
+  }
+  #lightbox-prev {
+    left: 8px;
+  }
+  #lightbox-next {
+    right: 8px;
+  }
 }
 
 @media (max-width: 600px) {

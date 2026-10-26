@@ -261,14 +261,29 @@
     width: 50px;
   }
 
-  /* Gallery: single column on mobile */
+  /* Gallery: 2-column on mobile */
   .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .gallery-item {
+    height: 180px !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    cursor: pointer !important;
+    touch-action: manipulation;
   }
 
   .gallery-item img {
-    height: 220px;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
   }
 
   /* Invitation message */
