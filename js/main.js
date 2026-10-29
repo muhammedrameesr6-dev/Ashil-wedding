@@ -267,7 +267,11 @@
     var viewMoreBtn = document.getElementById('viewMoreBtn');
     var exportBtn = document.getElementById('rsvpExportBtn');
 
-    var isAdmin = sessionStorage.getItem('wishesAdminAuthed') === 'true' || localStorage.getItem('wedding_owner_authed') === 'true';
+    try {
+      localStorage.removeItem('wedding_owner_authed');
+      sessionStorage.removeItem('wishesAdminAuthed');
+    } catch (e) {}
+    var isAdmin = false;
     var cachedRsvps = [];
     var cachedWishes = [];
     var displayLimit = 6;
@@ -473,35 +477,35 @@
       }
     }
 
-    // Update Admin UI state
+    // Update Admin UI state (Owner View)
     function updateAdminUI() {
       if (adminBadge) adminBadge.style.display = isAdmin ? 'inline-flex' : 'none';
       if (ownerLoginBtn) {
         ownerLoginBtn.innerHTML = isAdmin
-          ? '<i class="fas fa-lock-open"></i> Log out of Owner View'
+          ? '<i class="fas fa-lock-open"></i> Lock & Hide Owner View'
           : '<i class="fas fa-lock"></i> Owner View';
       }
       if (wishesDisplay) {
-        wishesDisplay.style.display = isAdmin ? 'block' : 'none';
+        if (isAdmin) {
+          wishesDisplay.style.removeProperty('display');
+          wishesDisplay.style.display = 'block';
+        } else {
+          wishesDisplay.style.setProperty('display', 'none', 'important');
+        }
       }
       renderRsvps(cachedRsvps);
       displayWishes(cachedWishes);
     }
 
-    // Check ?admin in URL
+    // Check ?admin=1 in URL
     (function checkAdminMode() {
       var params = new URLSearchParams(window.location.search);
-      var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
-      if (params.get('admin') === configuredPassword || params.get('key') === configuredPassword) {
-        sessionStorage.setItem('wishesAdminAuthed', 'true');
-        localStorage.setItem('wedding_owner_authed', 'true');
-        isAdmin = true;
-      } else if (params.get('admin') === '1' && !isAdmin) {
+      if (params.get('admin') === '1' && !isAdmin) {
+        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
         var entered = window.prompt('Enter Owner Password:');
         if (entered === configuredPassword) {
-          sessionStorage.setItem('wishesAdminAuthed', 'true');
-          localStorage.setItem('wedding_owner_authed', 'true');
           isAdmin = true;
+          updateAdminUI();
         } else if (entered !== null) {
           alert('Incorrect password.');
         }
@@ -512,19 +516,13 @@
     if (ownerLoginBtn) {
       ownerLoginBtn.addEventListener('click', function() {
         if (isAdmin) {
-          if (window.confirm('Log out of Owner View?')) {
-            sessionStorage.removeItem('wishesAdminAuthed');
-            localStorage.removeItem('wedding_owner_authed');
-            isAdmin = false;
-            updateAdminUI();
-          }
+          isAdmin = false;
+          updateAdminUI();
           return;
         }
         var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
         var entered = window.prompt('Enter Owner Password:');
         if (entered === configuredPassword) {
-          sessionStorage.setItem('wishesAdminAuthed', 'true');
-          localStorage.setItem('wedding_owner_authed', 'true');
           isAdmin = true;
           updateAdminUI();
           setTimeout(function() {
