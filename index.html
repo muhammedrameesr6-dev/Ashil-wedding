@@ -65,9 +65,9 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css?v=6" />
-  <link rel="stylesheet" href="css/animations.css?v=6" />
-  <link rel="stylesheet" href="css/responsive.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
+  <link rel="stylesheet" href="css/animations.css?v=7" />
+  <link rel="stylesheet" href="css/responsive.css?v=7" />
 
   <meta name="theme-color" content="#C8A96A" />
 </head>
@@ -500,9 +500,14 @@
           <p class="rsvp-success-desc" id="rsvpSuccessDesc">
             Your RSVP has been received with joy. We look forward to celebrating with you!
           </p>
-          <button type="button" class="rsvp-new-response-btn" id="rsvpNewResponseBtn">
-            <i class="fas fa-redo-alt"></i> Submit Another Response
-          </button>
+          <div class="rsvp-success-actions">
+            <a id="rsvpWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="rsvp-whatsapp-btn" style="display: none;">
+              <i class="fab fa-whatsapp"></i> Send Confirmation on WhatsApp
+            </a>
+            <button type="button" class="rsvp-new-response-btn" id="rsvpNewResponseBtn">
+              <i class="fas fa-redo-alt"></i> Submit Another Response
+            </button>
+          </div>
         </div>
 
         <div class="owner-access-wrap" style="text-align: center; margin-top: 28px;">
@@ -535,6 +540,12 @@
               <span class="rsvp-stat-num" id="rsvpStatDeclined">0</span>
               <span class="rsvp-stat-label">Cannot Attend</span>
             </div>
+          </div>
+
+          <div style="text-align: right; margin-bottom: 16px;">
+            <button type="button" id="rsvpExportBtn" class="rsvp-export-btn">
+              <i class="fas fa-file-download"></i> Download Guest List (CSV)
+            </button>
           </div>
 
           <div class="rsvp-admin-list" id="rsvpAdminList">
@@ -748,7 +759,7 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="js/firebase-config.js"></script>
   <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=7"></script>
   <script src="js/animations.js"></script>
   <script src="js/countdown.js"></script>
 

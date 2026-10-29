@@ -2283,6 +2283,43 @@ body.gate-active {
   margin: 0 auto 24px;
 }
 
+.rsvp-success-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.rsvp-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: #ffffff !important;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: var(--transition-fast);
+}
+
+.rsvp-whatsapp-btn:hover {
+  background: #1eb956;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  color: #ffffff !important;
+}
+
+.rsvp-whatsapp-btn i {
+  font-size: 18px;
+}
+
 .rsvp-new-response-btn {
   display: inline-flex;
   align-items: center;
@@ -2302,6 +2339,29 @@ body.gate-active {
 .rsvp-new-response-btn:hover {
   background: rgba(212, 160, 23, 0.1);
   border-color: var(--gold);
+}
+
+.rsvp-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 160, 23, 0.1);
+  color: var(--burgundy);
+  border: 1px solid rgba(212, 160, 23, 0.35);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.rsvp-export-btn:hover {
+  background: var(--burgundy);
+  color: #ffffff;
+  border-color: var(--burgundy);
 }
 
 /* Owner RSVP Dashboard in Admin View */
