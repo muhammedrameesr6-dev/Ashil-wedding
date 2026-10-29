@@ -267,7 +267,7 @@
     var viewMoreBtn = document.getElementById('viewMoreBtn');
     var exportBtn = document.getElementById('rsvpExportBtn');
 
-    var isAdmin = sessionStorage.getItem('wishesAdminAuthed') === 'true';
+    var isAdmin = sessionStorage.getItem('wishesAdminAuthed') === 'true' || localStorage.getItem('wedding_owner_authed') === 'true';
     var cachedRsvps = [];
     var cachedWishes = [];
     var displayLimit = 6;
@@ -420,6 +420,12 @@
         var initial = (wish.name || 'A').charAt(0).toUpperCase();
         var avatarColor = getAvatarColor(wish.name || '');
 
+        var isAttending = wish.attend !== 'no';
+        var guestNum = parseInt(wish.guests, 10) || 1;
+        var badgeHtml = isAttending
+          ? '<span class="rsvp-badge attending" style="font-size: 11px; padding: 2px 8px; border-radius: 6px;"><i class="fas fa-check"></i> ' + guestNum + ' Guest' + (guestNum > 1 ? 's' : '') + '</span>'
+          : '<span class="rsvp-badge declined" style="font-size: 11px; padding: 2px 8px; border-radius: 6px;"><i class="fas fa-times"></i> Cannot Attend</span>';
+
         var div = document.createElement('div');
         div.className = 'wish-item';
         div.setAttribute('data-aos', 'fade-up');
@@ -429,7 +435,10 @@
             '<span>' + initial + '</span>' +
           '</div>' +
           '<div class="wish-content">' +
-            '<div class="wish-author">' + escapeHtml(wish.name || 'Well-wisher') + '</div>' +
+            '<div class="wish-header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px;">' +
+              '<span class="wish-author">' + escapeHtml(wish.name || 'Well-wisher') + '</span>' +
+              badgeHtml +
+            '</div>' +
             '<div class="wish-message">' + escapeHtml(wish.message || '') + '</div>' +
             '<div class="wish-time">' + formatDate(wish.timestamp) + '</div>' +
           '</div>';
@@ -479,14 +488,19 @@
       displayWishes(cachedWishes);
     }
 
-    // Check ?admin=1 in URL
+    // Check ?admin in URL
     (function checkAdminMode() {
       var params = new URLSearchParams(window.location.search);
-      if (params.get('admin') === '1' && !isAdmin) {
-        var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
+      var configuredPassword = (window.WEDDING_CONFIG && window.WEDDING_CONFIG.admin && window.WEDDING_CONFIG.admin.password) || '123456';
+      if (params.get('admin') === configuredPassword || params.get('key') === configuredPassword) {
+        sessionStorage.setItem('wishesAdminAuthed', 'true');
+        localStorage.setItem('wedding_owner_authed', 'true');
+        isAdmin = true;
+      } else if (params.get('admin') === '1' && !isAdmin) {
         var entered = window.prompt('Enter Owner Password:');
         if (entered === configuredPassword) {
           sessionStorage.setItem('wishesAdminAuthed', 'true');
+          localStorage.setItem('wedding_owner_authed', 'true');
           isAdmin = true;
         } else if (entered !== null) {
           alert('Incorrect password.');
@@ -500,6 +514,7 @@
         if (isAdmin) {
           if (window.confirm('Log out of Owner View?')) {
             sessionStorage.removeItem('wishesAdminAuthed');
+            localStorage.removeItem('wedding_owner_authed');
             isAdmin = false;
             updateAdminUI();
           }
@@ -509,6 +524,7 @@
         var entered = window.prompt('Enter Owner Password:');
         if (entered === configuredPassword) {
           sessionStorage.setItem('wishesAdminAuthed', 'true');
+          localStorage.setItem('wedding_owner_authed', 'true');
           isAdmin = true;
           updateAdminUI();
           setTimeout(function() {
@@ -576,10 +592,21 @@
             if (!item || typeof item !== 'object') return;
             item.id = key;
 
-            // An entry is an RSVP if it has attend field, or guests field, or isRsvp flag
-            if (item.attend || item.isRsvp || typeof item.guests !== 'undefined') {
-              rsvps.push(item);
+            // Only include entries for Ashil & Athira's wedding (Oct 22, 2026 onwards)
+            var ts = item.timestamp || 0;
+            if (ts < 1792000000000) return;
+
+            // Ensure valid attend & guest count defaults
+            if (!item.attend) {
+              item.attend = 'yes';
             }
+            if (typeof item.guests === 'undefined' || item.guests === null) {
+              item.guests = 1;
+            } else {
+              item.guests = parseInt(item.guests, 10) || 1;
+            }
+
+            rsvps.push(item);
             if (item.message) {
               wishes.push(item);
             }
